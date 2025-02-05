@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/05 15:24:06 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/05 16:04:59 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,7 @@
 
 # include <stdio.h>
 # include <mlx.h>
+
+# include "structs.h"
 
 #endif

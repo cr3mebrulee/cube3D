@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/05 15:15:05 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/05 15:53:19 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	void		*img;
 	t_map		map;
 	t_player	player;
 	t_ray		ray;
