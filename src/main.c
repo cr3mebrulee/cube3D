@@ -1,26 +1,28 @@
-#include <mlx.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 15:15:22 by dbisko            #+#    #+#             */
+/*   Updated: 2025/02/05 15:24:15 by dbisko           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main(void)
+#include "cub3d.h"
+
+int	main(void)
 {
-    void *mlx;
-    void *win;
+	void	*mlx;
+	void	*win;
 
-    // Initialize MiniLibX
-    mlx = mlx_init();
-    if (!mlx)
-    {
-        return (1); // Initialization failed
-    }
-
-    // Create a window
-    win = mlx_new_window(mlx, 800, 600, "MLX Test");
-    if (!win)
-    {
-        return (1); // Window creation failed
-    }
-
-    // Keep the window open (infinite loop)
-    mlx_loop(mlx);
-
-    return (0);
+	mlx = mlx_init();
+	if (!mlx)
+		return (1);
+	win = mlx_new_window(mlx, WIDTH, HIGHT, "MLX Test");
+	if (!win)
+		return (1);
+	mlx_loop(mlx);
+	return (0);
 }
