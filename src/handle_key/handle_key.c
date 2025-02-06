@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   handle_key.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/07 11:01:29 by dbisko           ###   ########.fr       */
+/*   Created: 2025/02/06 17:00:41 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/06 17:43:46 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#include "handle_key.h"
 
-# define WIDTH 800
-# define HEIGHT 600
-# define PLAYER_COLOR 0xFFFFFF
-
-# include <stdio.h>
-# include <mlx.h>
-# include "structs.h"
-# include "../src/handle_key/handle_key.h"
-
-#endif
+int handle_key(int keycode, t_game *game)
+{
+	if (keycode == 65307)
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		return (0);
+	}
+	return (0);
+}
