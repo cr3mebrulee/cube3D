@@ -6,7 +6,7 @@
 #    By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:13:25 by dbisko            #+#    #+#              #
-#    Updated: 2025/02/05 13:44:49 by dbisko           ###   ########.fr        #
+#    Updated: 2025/02/07 11:22:18 by dbisko           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ FILES = ft_atoi.c\
 		ft_lstclear.c\
 		ft_putchar_fd.c\
 		ft_strmapi.c\
+		get_next_line.c
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
