@@ -5,17 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2025/02/07 11:25:17 by dbisko           ###   ########.fr       */
+/*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
+/*   Updated: 2025/02/07 16:14:20 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-#include <fcntl.h>   // For open()
-#include <unistd.h>  // For close(), read()
-#include <stdio.h>   // For printf(), perror()
-
 
 // void draw_player(t_game *game)
 // {
@@ -34,50 +29,107 @@
 // 	player->y = HEIGHT / 2;
 // }
 
-void	test_get_next_line(void)
+#include "cub3d.h" // Ensure this includes the struct definitions
+
+
+void	init_map(t_map *map)
 {
-	int		fd;
-	char	*line;
-
-	// Open the map file
-	fd = open("maps/basic.cub", O_RDONLY);
-	if (fd == -1)
-	{
-		perror("Error opening file");
-		return;
-	}
-
-	// Read and print lines one by one using get_next_line
-	printf("Reading from file: maps/basic.cub\n");
-	while ((line = get_next_line(fd)))
-	{
-		printf("Line: %s", line);
-		free(line);  // Free the line after printing
-	}
-
-	// Close the file
-	close(fd);
-	printf("✅ Finished reading file.\n");
+	map->grid = NULL;
+	map->width = 0;
+	map->height = 0;
 }
 
-
-int	main(void)
+void	init_player(t_player *player)
 {
-	// t_game	game;
-
-	// Test get_next_line() before initializing MLX
-	test_get_next_line();
-
-	// game.mlx = mlx_init();
-	// if (!game.mlx)
-	// 	return (1);
-	// game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "MLX Test");
-	// if (!game.win)
-	// 	return (1);
-	// init_player(&game.player);
-	// draw_player(&game);
-	// mlx_key_hook(game.win, handle_key, &game);
-	// mlx_loop(game.mlx);
-	return (0);
+	player->x = 0;
+	player->y = 0;
+	player->dir_x = 0;
+	player->dir_y = 0;
+	player->plane_x = 0;
+	player->plane_y = 0;
 }
 
+void	init_ray(t_ray *ray)
+{
+	ray->camera_x = 0;
+	ray->ray_dir_x = 0;
+	ray->ray_dir_y = 0;
+	ray->map_x = 0;
+	ray->map_y = 0;
+	ray->side_dist_x = 0;
+	ray->side_dist_y = 0;
+	ray->delta_dist_x = 0;
+	ray->delta_dist_y = 0;
+	ray->perp_wall_dist = 0;
+	ray->step_x = 0;
+	ray->step_y = 0;
+	ray->hit = 0;
+	ray->side = 0;
+}
+
+void	init_texture(t_texture *texture)
+{
+	texture->img = NULL;
+	texture->data = NULL;
+	texture->width = 0;
+	texture->height = 0;
+}
+
+void	init_game(t_game *game)
+{
+	game->mlx = NULL;
+	game->win = NULL;
+	game->img = NULL;
+	init_map(&game->map);
+	init_player(&game->player);
+	init_ray(&game->ray);
+	init_texture(&game->no_texture);
+	init_texture(&game->so_texture);
+	init_texture(&game->we_texture);
+	init_texture(&game->ea_texture);
+	game->floor_color = -1;
+	game->ceiling_color = -1;
+}
+
+int	main(int ac, char **av)
+{
+	char	*filename;
+	int		success;
+	t_game	*game;
+
+	if (ac == 2)
+	{
+		filename = av[1];
+		game = (t_game *)malloc(sizeof(t_game));
+		if (!game)
+		{
+			ft_putstr_fd("Error: Malloc fail.\n", 2);
+			return (1);
+		}
+		init_game(game);
+		success = parse_file(filename, game);
+		return (0);
+	}
+	else
+	{
+		ft_putstr_fd("Error: ./cub3d takes in exactly one argument\n", 2);
+		return (1);
+	}
+}
+
+// int	main(int ac, char **av)
+// {
+// 	// t_game	game;
+
+// 	// game.mlx = mlx_init();
+// 	// if (!game.mlx)
+// 	// 	return (1);
+// 	// game.win = mlx_new_window(game.mlx, WIDTH, HEIGHT, "MLX Test");
+// 	// if (!game.win)
+// 	// 	return (1);
+// 	// init_player(&game.player);
+// 	// draw_player(&game);
+// 	// mlx_key_hook(game.win, handle_key, &game);
+// 	// mlx_loop(game.mlx);
+// 	return (0);
+// }

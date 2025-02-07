@@ -15,7 +15,11 @@ HANDLE_KEY_NAMES = handle_key.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 
-SRC_NAMES = $(HANDLE_KEY_SRCS)
+PARSE_FILE_NAMES = parser.c parser_utils.c
+PARSE_FILE_DIR = parse_file
+PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
+
+SRC_NAMES = $(HANDLE_KEY_SRCS) $(PARSE_FILE_SRCS)
 ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))

@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/13 16:12:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/07 11:28:39 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:48:37 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ char	*read_line(int fd, char *buffer, char *leftover)
 		leftover = NULL;
 		return (NULL);
 	}
-
 	return (leftover);
 }
 
@@ -47,7 +46,6 @@ char	*divide_line(char **leftover)
 	i = 0;
 	while ((*leftover)[i] && (*leftover)[i] != '\n')
 		i++;
-
 	temp = *leftover;
 	line = ft_substr(temp, 0, i + 1);
 	*leftover = ft_substr(temp, i + 1, ft_strlen(temp));
@@ -57,7 +55,6 @@ char	*divide_line(char **leftover)
 		free(*leftover);
 		*leftover = NULL;
 	}
-
 	return (line);
 }
 
@@ -73,20 +70,15 @@ char	*get_next_line(int fd)
 		leftover = NULL;
 		return (NULL);
 	}
-
 	if (!leftover)
 		leftover = ft_strdup("");
-
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-
 	leftover = read_line(fd, buffer, leftover);
 	free(buffer);
 	if (!leftover)
 		return (NULL);
-
 	line = divide_line(&leftover);
 	return (line);
 }
-
