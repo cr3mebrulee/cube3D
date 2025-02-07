@@ -15,13 +15,17 @@ HANDLE_KEY_NAMES = handle_key.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 
-SRC_NAMES = $(HANDLE_KEY_SRCS)
+INIT_PLAYER_NAMES = init_player.c
+INIT_PLAYER_DIR = init_player
+INIT_PLAYER_SRCS =  $(addprefix $(INIT_PLAYER_DIR)/, $(INIT_PLAYER_NAMES))
+
+SRC_NAMES = $(HANDLE_KEY_SRCS) $(INIT_PLAYER_SRCS)
 ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))
 ENDPOINT_SRC = $(addprefix $(SRC_DIR)/, $(ENDPOINT_NAME))
 
-OBJ = $(patsubst %,$(OBJ_DIR)/%,$(SRC_NAMES:.c=.o))
+OBJ = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC))
 ENDPOINT_OBJ = $(OBJ_DIR)/$(ENDPOINT_NAME:.c=.o)
 
 all: pre $(NAME)
@@ -33,11 +37,11 @@ $(NAME): $(OBJ) $(ENDPOINT_OBJ) $(LIBFT)
 	@$(CC) $(CFLAGS) $(OBJ)  $(ENDPOINT_OBJ) $(LIBFT) $(MLX) $(RLFLAGS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(dir $@)  # Create necessary subdirectories
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(HANDLE_KEY_DIR)  # Ensure handle_key directory exists
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(HANDLE_KEY_DIR) $(OBJ_DIR)/$(INIT_PLAYER_DIR)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/05 15:15:05 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/07 15:09:21 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	move_speed;
 }	t_player;
 
 typedef struct s_ray
@@ -62,6 +63,9 @@ typedef struct s_game
 	void		*win;
 	t_map		map;
 	t_player	player;
+	int			**maze;
+	int			maze_height;
+	int			maze_width;
 	t_ray		ray;
 	t_texture	no_texture;
 	t_texture	so_texture;
