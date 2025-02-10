@@ -6,11 +6,11 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:26:57 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/07 15:50:44 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/10 15:02:56 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 int	open_file(char *filename)
 {
@@ -56,12 +56,35 @@ char	*tidy_line(char *line)
 
 t_bool	is_map_line(const char *line)
 {
+	t_bool	has_valid_char;
+
+	if (!line || *line == '\0')
+		return (false);
+
+	has_valid_char = false;
 	while (*line)
 	{
-		if (*line != '0' && *line != '1' && *line != 'N' && *line != 'S' 
-			&& *line != 'E' && *line != 'W')
+		if (*line == '0' || *line == '1' || *line == 'N' || *line == 'S' 
+			|| *line == 'E' || *line == 'W')
+			has_valid_char = true;
+		else if (*line != ' ')
 			return (false);
 		line++;
+	}
+	return (has_valid_char);
+}
+
+
+
+
+
+t_bool	validate_pre_map_section(t_bool map_started)
+{
+	if (map_started)
+	{
+		ft_putstr_fd("Error: Invalid order. The map must "
+			"be at the end of the file.\n", 2);
+		return (false);
 	}
 	return (true);
 }
