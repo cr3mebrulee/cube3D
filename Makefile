@@ -11,7 +11,7 @@ MLX = -lmlx -lX11 -lXext -lm
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-HANDLE_KEY_NAMES = handle_key.c
+HANDLE_KEY_NAMES = handle_key.c calculate_new_positions.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 

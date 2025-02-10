@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/07 16:22:30 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:29:41 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,11 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define PLAYER_COLOR 0xFFFFFF
-# define W_KEY 13
+# define ESC 65307
+# define W_KEY 119
+# define A_KEY 97
+# define S_KEY 115
+# define D_KEY 100
 
 # include <stdio.h>
 # include <mlx.h>

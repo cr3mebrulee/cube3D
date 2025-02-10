@@ -6,48 +6,60 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:00:41 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/07 16:33:00 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/10 18:30:35 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "handle_key.h"
 
-int	is_walkable(t_game *game, double x, double y)
+void	render_scene(t_game *game)
 {
-	int	maze_x = (int)x;
-	int	maze_y = (int)y;
-	if (maze_x < 0 || maze_y < 0 ||
-		maze_x >= game->maze_width || maze_y >= game->maze_height)
-		return 0;
-	return (game->maze[maze_y][maze_x] == 0);
+	// Clear the window (optional, depends on rendering method)
+	mlx_clear_window(game->mlx, game->win);
+	// Draw the maze (walls, floor, etc.)
+	//draw_maze(game);
+	// Draw the player
+	draw_player(game, (int)game->player.x, (int)game->player.y);
+	// Display the new frame
+	// mlx_put_image_to_window(game->mlx, game->win, game->image, 0, 0);
 }
 
-int	calculate_new_w_position(t_game *game)
+int	calculate_new_position(t_game *game, int keycode)
 {
-	double	new_x;
-	double	new_y;
-	new_x = game->player.x + game->player.dir_x * game->player.move_speed;
-	new_y = game->player.y + game->player.dir_y * game->player.move_speed;
-	// Check collision: first for the X-axis then Y-axis
-	if (is_walkable(game, new_x, game->player.y))
-		game->player.x = new_x;
-	if (is_walkable(game, game->player.x, new_y))
-		game->player.y = new_y;
+	if (keycode == W_KEY)
+	{
+		printf("W key pressed\n");
+		calculate_new_d_position(game);
+	}
+	if (keycode == S_KEY)
+	{
+		printf("S key pressed\n");
+		calculate_new_s_position(game);
+	}
+	if (keycode == A_KEY)
+	{
+		printf("A key pressed\n");
+		calculate_new_a_position(game);
+	}
+	if (keycode == D_KEY)
+		calculate_new_d_position(game);
 	return (0);
 }
 
-int handle_key(int keycode, t_game *game)
+int	handle_key(int keycode, t_game *game)
 {
-	if (keycode == 65307)
+	if (keycode == W_KEY || keycode == S_KEY || keycode == A_KEY
+		|| keycode == D_KEY)
 	{
-		mlx_destroy_window(game->mlx, game->win);
-		return (0);
-	}
-	else if (keycode == W_KEY)
-	{
-		calculate_new_w_position(game);
+		calculate_new_position(game, keycode);
 		render_scene(game);
 
+	}
+	if (keycode == ESC)
+	{
+		printf("ESC key pressed\n");
+		mlx_destroy_window(game->mlx, game->win);
+		return (0);
 	}
 	return (0);
 }
