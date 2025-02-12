@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:20:28 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/10 17:08:13 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/12 13:31:36 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,5 @@ int	validate_single_player(t_game *game)
 		ft_putstr_fd("Error: No player found in the map.\n", 2);
 	else if (player_count > 1)
 		ft_putstr_fd("Error: Multiple players found in the map.\n", 2);
-	else
-		ft_putstr_fd("Error: Failed to count players.\n", 2);
 	return (1);
 }
-

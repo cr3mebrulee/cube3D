@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:48:02 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/10 16:58:32 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/12 13:03:29 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	free_textures(t_game *game)
 		mlx_destroy_image(game->mlx, game->we_texture.img);
 	if (game->ea_texture.img)
 		mlx_destroy_image(game->mlx, game->ea_texture.img);
-
 	game->no_texture.img = NULL;
 	game->so_texture.img = NULL;
 	game->we_texture.img = NULL;
@@ -48,7 +47,6 @@ void	free_map(t_game *game)
 	free(game->map.grid);
 	game->map.grid = NULL;
 }
-
 
 void	free_game(t_game *game)
 {

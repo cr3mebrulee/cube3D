@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:38 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/10 15:52:27 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/12 15:05:09 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 typedef enum e_line_type
 {
 	TEXTURE,
-	FLOOR,
-	CEILING,
+	FC_COLOR,
 	MAP,
 	EMPTY,
 	INVALID,
@@ -31,6 +30,11 @@ typedef struct s_flood_fill
 	int		**visited;
 }	t_flood_fill;
 
+typedef struct s_point
+{
+	int	x;
+	int	y;
+}	t_point;
 
 typedef enum e_bool
 {
@@ -64,10 +68,36 @@ t_bool		validate_map(t_map *map);
 void		free_game(t_game *game);
 void		free_map(t_game *game);
 
+// process line
+int			process_file_lines(int fd, t_game *game);
+
 // map validity
-int	validate_single_player(t_game *game);
+int			validate_single_player(t_game *game);
+
+// map validity 2
+int			validate_map_with_visited(t_game *game);
 
 // test utils 
 void		print_map(t_game *game);
+
+// set player
+void		find_and_set_player(t_game *game);
+
+// pad map
+int			normalize_map_width(t_game *game);
+
+// put C F color 
+int			parse_color_line(char *line, t_game *game);
+
+// color utils
+void		free_tokens(char **tokens);
+int			count_tokens(char **tokens);
+int			is_valid_number(const char *s);
+int			validate_numeric_tokens(char **tokens);
+int			get_color_from_tokens(char **tokens);
+
+// color utils 2
+int			assign_color_prefix(char **tokens, t_game *game, int color);
+int			check_color_token_count(char **tokens);
 
 #endif

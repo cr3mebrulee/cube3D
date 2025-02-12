@@ -15,11 +15,19 @@ HANDLE_KEY_NAMES = handle_key.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 
-PARSE_FILE_NAMES = parser.c parser_utils.c init_structs.c free_utils.c parse_map.c map_validity.c
+DESTRUCTOR_KEY_NAMES = free_utils.c
+DESTRUCTOR_KEY_DIR = destructor
+DESTRUCTOR_KEY_SRCS =  $(addprefix $(DESTRUCTOR_KEY_DIR)/, $(DESTRUCTOR_KEY_NAMES))
+
+PARSE_FILE_NAMES = parser.c parser_utils.c init_structs.c\
+				parse_map.c map_validity.c\
+				map_validity_2.c set_player.c process_line.c\
+				pad_map.c put_C_F_color.c color_utils.c\
+				color_utils_2.c
 PARSE_FILE_DIR = parse_file
 PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
 
-SRC_NAMES = $(HANDLE_KEY_SRCS) $(PARSE_FILE_SRCS)
+SRC_NAMES = $(HANDLE_KEY_SRCS) $(PARSE_FILE_SRCS) $(DESTRUCTOR_KEY_SRCS)
 # ENDPOINT_NAME = main.c
 ENDPOINT_NAME = main_parser.c
 

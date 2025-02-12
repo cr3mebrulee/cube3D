@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/10 16:56:50 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/12 15:33:28 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int	main(int ac, char **av)
 		init_game(game);
 		success = parse_file(filename, game);
 		if (success == 0)
-		{
 			print_map(game);
-			free_game(game);
-		}
-		return (0);
+		else
+			ft_putstr_fd("Error: Parsing failed.\n", 2);
+		free_game(game);
+		return (success);
 	}
 	else
 	{
