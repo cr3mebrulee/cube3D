@@ -26,7 +26,7 @@ typedef struct s_player
     double y;       // Player's Y position
     double dir_x;   // Direction vector X
     double dir_y;   // Direction vector Y
-    double plane_x; // Camera plane X (for FOV)
+    double plane_x; // Camera plane X (for  field of view (FOV))
     double plane_y; // Camera plane Y
 } t_player;
 ```

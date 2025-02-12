@@ -6,7 +6,7 @@
 #    By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:13:25 by dbisko            #+#    #+#              #
-#    Updated: 2025/02/05 13:44:49 by dbisko           ###   ########.fr        #
+#    Updated: 2025/02/10 15:28:52 by dbisko           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ FILES = ft_atoi.c\
 		ft_split.c\
 		ft_strtrim.c\
 		ft_isalpha.c\
+		ft_isspace.c\
 		ft_lstnew.c\
 		ft_strchr.c\
 		ft_substr.c\
@@ -54,6 +55,8 @@ FILES = ft_atoi.c\
 		ft_lstclear.c\
 		ft_putchar_fd.c\
 		ft_strmapi.c\
+		ft_realloc.c\
+		get_next_line.c
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror

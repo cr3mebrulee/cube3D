@@ -29,7 +29,7 @@ void	init_player(t_player *player)
 	player->y = HEIGHT / 2;
 }
 
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_game	game;
 
