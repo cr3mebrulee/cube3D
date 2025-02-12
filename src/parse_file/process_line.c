@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:50:09 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:30:54 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/12 16:34:03 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,74 @@ t_line_type	identify_line_type(char *line, t_bool *map_started)
 	return (INVALID);
 }
 
+int	parse_texture(char *line, t_game *game)
+{
+	int     i;
+	char    *identifier;
+	char    *file_path;
+	int     width, 
+	int		height;
+	int     bits_per_pixel; 
+	int		line_length;
+	int		endian;
+
+	i = 0;
+	// Skip any leading whitespace using ft_isspace.
+	while (line[i] && ft_isspace(line[i]))
+		i++;
+
+	// Extract the texture identifier (assumed to be 2 characters: NO, SO, WE, EA).
+	identifier = ft_substr(line, i, 2);
+	if (!identifier)
+	{
+		fprintf(stderr, "Error: Memory allocation for identifier failed.\n");
+		return (1);
+	}
+	i += 2;
+
+	// Skip whitespace between the identifier and the file path.
+	while (line[i] && ft_isspace(line[i]))
+		i++;
+
+	// Extract and trim the file path.
+	file_path = ft_strtrim(line + i, " \t\n");
+	if (!file_path)
+	{
+		free(identifier);
+		ft_putstr_fd("Error: Memory allocation for file path failed.\n", 2);
+		return (1);
+	}
+
+	// Load the texture image using MiniLibX.
+	if (ft_strcmp(identifier, "NO") == 0)
+	{
+		game->no_texture.img = mlx_xpm_file_to_image(game->mlx, file_path, &width, &height);
+		if (!game->no_texture.img)
+		{
+			fprintf(stderr, "Error: Failed to load NO texture from \"%s\".\n", file_path);
+			free(identifier);
+			free(file_path);
+			return (1);
+		}
+		game->no_texture.width = width;
+		game->no_texture.height = height;
+		game->no_texture.data = (int *)mlx_get_data_addr(game->no_texture.img,
+														 &bits_per_pixel, &line_length, &endian);
+	}
+	// Add similar blocks for "SO", "WE", and "EA" as needed.
+	else
+	{
+		fprintf(stderr, "Error: Unknown texture identifier \"%s\".\n", identifier);
+		free(identifier);
+		free(file_path);
+		return (1);
+	}
+
+	free(identifier);
+	free(file_path);
+	return (0);
+}
+
 int	handle_line(char *line, t_bool *map_started,
 	t_line_type type, t_game *game)
 {
@@ -55,7 +123,10 @@ int	handle_line(char *line, t_bool *map_started,
 	if (!validate_pre_map_section(*map_started))
 		return (1);
 	if (type == TEXTURE)
+	{
+		parse_texture(line, game);
 		printf("[DEBUG] Texture line: %s\n", line);
+	}
 	else if (type == FC_COLOR)
 	{
 		if (parse_color_line(line, game))
