@@ -6,13 +6,13 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:51:39 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 12:48:04 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/12 15:46:17 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-static void	set_vertical_player(t_player *player, char cell)
+static void	set_vertical_directions(t_player *player, char cell)
 {
 	player->dir_x = 0.0;
 	player->plane_y = 0.0;
@@ -28,7 +28,7 @@ static void	set_vertical_player(t_player *player, char cell)
 	}
 }
 
-static void	set_horizontal_player(t_player *player, char cell)
+static void	set_horizontal_directions(t_player *player, char cell)
 {
 	player->dir_y = 0.0;
 	player->plane_x = 0.0;

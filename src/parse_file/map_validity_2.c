@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:11:29 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 13:16:18 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/12 15:48:27 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,53 +118,3 @@ int	validate_map_with_visited(t_game *game)
 		return (0);
 	return (1);
 }
-
-// int validate_map_with_visited(t_game *game)
-// {
-// 	t_bool	**visited;
-// 	t_bool	valid;
-// 	int		i;
-// 	int		j;
-// 	t_map	map;
-// 	t_point	size;
-// 	t_point	start;
-
-// 	map = game->map;
-// 	size.x = map.width;
-// 	size.y = map.height;
-
-// 	start.x = (int)game->player.x;
-// 	start.y = (int)game->player.y;
-
-// 	visited = malloc(size.y * sizeof(t_bool *));
-// 	if (!visited)
-// 	{
-// 		ft_putstr_fd("Error: Malloc fail in map validation\n", 2);
-// 		return (1);
-// 	}
-// 	i = 0;
-// 	while (i < size.y)
-// 	{
-// 		visited[i] = ft_calloc(size.x, sizeof(t_bool));
-// 		if (!visited[i])
-// 		{
-// 			j = 0;
-// 			while (j < i)
-// 			{
-// 				free(visited[j]);
-// 				j++;
-// 			}
-// 			free(visited);
-// 			return (1);
-// 		}
-// 		i++;
-// 	}
-
-// 	valid = flood_fill_validate(map.grid, size, start, visited);
-// 	free_bool_array(visited, size.y);
-
-// 	if (valid)
-// 		return (0);
-// 	else
-// 		return (1);
-// }
