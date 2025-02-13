@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:21:31 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/10 18:45:23 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:44:50 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	calculate_new_d_position(t_game *game)
 	double	new_y;
 
 	new_x = game->player.x + game->player.dir_y * game->player.move_speed;
-	new_y = game->player.y + game->player.dir_x * game->player.move_speed;
+	new_y = game->player.y - game->player.dir_x * game->player.move_speed;
 	game->player.x = new_x;
 	game->player.y = new_y;
 	// if (is_walkable(game, new_x, game->player.y))
@@ -42,7 +42,6 @@ int	calculate_new_d_position(t_game *game)
 	// 	game->player.y = new_y;
 	return (0);
 }
-
 
 int	calculate_new_a_position(t_game *game)
 {
@@ -82,8 +81,8 @@ int	calculate_new_w_position(t_game *game)
 	double	new_x;
 	double	new_y;
 
-	new_x = game->player.x - game->player.dir_y * game->player.move_speed;
-	new_y = game->player.y - game->player.dir_x * game->player.move_speed;
+	new_x = game->player.x + game->player.dir_x * game->player.move_speed;
+	new_y = game->player.y + game->player.dir_y * game->player.move_speed;
 	// Check collision: first for the X-axis then Y-axis
 	// if (is_walkable(game, new_x, game->player.y))
 	// 	game->player.x = new_x;

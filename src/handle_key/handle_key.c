@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:00:41 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/10 18:30:35 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:49:33 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	calculate_new_position(t_game *game, int keycode)
 	if (keycode == W_KEY)
 	{
 		printf("W key pressed\n");
-		calculate_new_d_position(game);
+		calculate_new_w_position(game);
 	}
 	if (keycode == S_KEY)
 	{
@@ -57,15 +57,23 @@ int	handle_key(int keycode, t_game *game)
 	}
 	if (keycode == ESC)
 	{
-		printf("ESC key pressed\n");
-		mlx_destroy_window(game->mlx, game->win);
-		return (0);
+		if (game->win)
+			mlx_destroy_window(game->mlx, game->win);
+		if (game->img)
+			mlx_destroy_image(game->mlx, game->img);
+		if (game->mlx)
+			mlx_loop_end(game->mlx);
 	}
 	return (0);
 }
 
 int	handle_close(t_game *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
+	if (game->win)
+		mlx_destroy_window(game->mlx, game->win);
+	if (game->img)
+		mlx_destroy_image(game->mlx, game->img);
+	if (game->mlx)
+		mlx_loop_end(game->mlx);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/10 18:29:41 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:06:26 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@
 # include <stdio.h>
 # include <mlx.h>
 # include <math.h>
+# include <stdlib.h>
+# include "../libft/libft.h"
 # include "structs.h"
 # include "../src/handle_key/handle_key.h"
-# include "../src/init_player/player_initialization.h"
+# include "../src/init_mlx_data/mlx_data_initialization.h"
 
 #endif

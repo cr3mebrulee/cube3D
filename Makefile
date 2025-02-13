@@ -15,11 +15,11 @@ HANDLE_KEY_NAMES = handle_key.c calculate_new_positions.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 
-INIT_PLAYER_NAMES = init_player.c
-INIT_PLAYER_DIR = init_player
-INIT_PLAYER_SRCS =  $(addprefix $(INIT_PLAYER_DIR)/, $(INIT_PLAYER_NAMES))
+INIT_MLX_DATA_NAMES = init_player.c init_mlx_data.c
+INIT_MLX_DATA_DIR = init_mlx_data
+INIT_MLX_DATA_SRCS =  $(addprefix $(INIT_MLX_DATA_DIR)/, $(INIT_MLX_DATA_NAMES))
 
-SRC_NAMES = $(HANDLE_KEY_SRCS) $(INIT_PLAYER_SRCS)
+SRC_NAMES = $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS)
 ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))
@@ -41,7 +41,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(HANDLE_KEY_DIR) $(OBJ_DIR)/$(INIT_PLAYER_DIR)
+	@mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(HANDLE_KEY_DIR) $(OBJ_DIR)/$(INIT_MLX_DATA_DIR)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)

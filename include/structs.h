@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/07 15:09:21 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/13 12:56:58 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,28 @@ typedef struct s_ray
 
 typedef struct s_texture
 {
-	void		*img;
 	int			*data;
 	int			width;
 	int			height;
 }	t_texture;
 
+typedef struct		s_img
+{
+	void	*ptr;
+	char	*addr;	// In my code I changed this to int *, which I will explain in a second
+	int		bpp; //when using ARGB this value is always 32
+	int		size_line;	//This value represents (your image width) * 4 which I will also explain after
+	int		endian;	//This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
+}	t_img;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
+	t_img		*img;
 	t_map		map;
 	t_player	player;
+	char		*data; // to get image data
 	int			**maze;
 	int			maze_height;
 	int			maze_width;

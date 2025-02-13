@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:42:05 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/10 18:11:51 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/12 15:55:51 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "../../include/structs.h"
 # include "../../include/cub3d.h"
 # include "handle_key_internal.h"
-# include "../init_player/player_initialization.h"
+# include "../init_mlx_data/mlx_data_initialization.h"
 
 int	handle_key(int keycode, t_game *game);
 int	handle_close(t_game *game);

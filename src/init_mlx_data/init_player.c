@@ -6,11 +6,11 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:12:06 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/11 16:32:42 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/13 13:20:50 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "player_initialization.h"
+#include "mlx_data_initialization.h"
 
 void	draw_player(t_game *game, int px, int py)
 {
@@ -23,7 +23,7 @@ void	init_player(t_game *game)
 {
 	game->player.x = WIDTH / 2;
 	game->player.y = HEIGHT / 2;
-	game->player.dir_x = -1.0;
+	game->player.dir_x = 1.0;
 	game->player.dir_y = 0.0;
 	game->player.plane_x = 0.0;
 	game->player.plane_y = 0.66;
