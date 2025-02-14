@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:50:09 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 16:34:03 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 12:55:57 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,61 +37,73 @@ t_line_type	identify_line_type(char *line, t_bool *map_started)
 	return (INVALID);
 }
 
-int	parse_texture(char *line, t_game *game)
+int	extract_texture_info(const char *line, char **identifier, char **filepath)
 {
-	int     i;
-	char    *identifier;
-	char    *file_path;
-	int     width, 
-	int		height;
-	int     bits_per_pixel; 
-	int		line_length;
-	int		endian;
+	int	i;
 
 	i = 0;
-	// Skip any leading whitespace using ft_isspace.
 	while (line[i] && ft_isspace(line[i]))
 		i++;
-
-	// Extract the texture identifier (assumed to be 2 characters: NO, SO, WE, EA).
-	identifier = ft_substr(line, i, 2);
-	if (!identifier)
-	{
-		fprintf(stderr, "Error: Memory allocation for identifier failed.\n");
+	*identifier = ft_substr(line, i, 2);
+	if (!(*identifier))
 		return (1);
-	}
 	i += 2;
-
-	// Skip whitespace between the identifier and the file path.
 	while (line[i] && ft_isspace(line[i]))
 		i++;
-
-	// Extract and trim the file path.
-	file_path = ft_strtrim(line + i, " \t\n");
-	if (!file_path)
+	*filepath = ft_strtrim(line + i, " \t\n");
+	if (!(*filepath))
 	{
-		free(identifier);
-		ft_putstr_fd("Error: Memory allocation for file path failed.\n", 2);
+		free(*identifier);
+		return (1);
+	}
+	return (0);
+}
+
+
+int	parse_texture(char *line, t_game *game)
+{
+	char	*identifier;
+	char	*file_path;
+
+	if (extract_texture_info(line, &identifier, &file_path) != 0)
+	{
+		fprintf(stderr, "Error: Failed to extract texture info from line.\n");
 		return (1);
 	}
 
-	// Load the texture image using MiniLibX.
-	if (ft_strcmp(identifier, "NO") == 0)
+	// Example for "NO" texture – add similar blocks for "SO", "WE", and "EA" as needed.
+	if (ft_strncmp(identifier, "NO", 2) == 0)
 	{
-		game->no_texture.img = mlx_xpm_file_to_image(game->mlx, file_path, &width, &height);
+		// Allocate the t_img structure for the texture.
+		game->no_texture.img = malloc(sizeof(t_img));
 		if (!game->no_texture.img)
 		{
-			fprintf(stderr, "Error: Failed to load NO texture from \"%s\".\n", file_path);
+			fprintf(stderr, "Error: Memory allocation for t_img failed.\n");
 			free(identifier);
 			free(file_path);
 			return (1);
 		}
-		game->no_texture.width = width;
-		game->no_texture.height = height;
-		game->no_texture.data = (int *)mlx_get_data_addr(game->no_texture.img,
-														 &bits_per_pixel, &line_length, &endian);
+
+		// Load the image. The width and height are stored directly in the texture.
+		game->no_texture.img->ptr = mlx_xpm_file_to_image(game->mlx, file_path,
+			&game->no_texture.width, &game->no_texture.height);
+		if (!game->no_texture.img->ptr)
+		{
+			fprintf(stderr, "Error: Failed to load NO texture from \"%s\".\n", file_path);
+			free(game->no_texture.img);
+			free(identifier);
+			free(file_path);
+			return (1);
+		}
+
+		// Get the image's pixel data and store pixel format info in t_img.
+		game->no_texture.img->addr = mlx_get_data_addr(game->no_texture.img->ptr,
+			&game->no_texture.img->bpp, &game->no_texture.img->size_line,
+			&game->no_texture.img->endian);
+
+		// Save the pixel data pointer in the texture structure.
+		game->no_texture.data = (int *)game->no_texture.img->addr;
 	}
-	// Add similar blocks for "SO", "WE", and "EA" as needed.
 	else
 	{
 		fprintf(stderr, "Error: Unknown texture identifier \"%s\".\n", identifier);
@@ -104,6 +116,8 @@ int	parse_texture(char *line, t_game *game)
 	free(file_path);
 	return (0);
 }
+
+
 
 int	handle_line(char *line, t_bool *map_started,
 	t_line_type type, t_game *game)
@@ -124,7 +138,7 @@ int	handle_line(char *line, t_bool *map_started,
 		return (1);
 	if (type == TEXTURE)
 	{
-		parse_texture(line, game);
+		// parse_texture(line, game);
 		printf("[DEBUG] Texture line: %s\n", line);
 	}
 	else if (type == FC_COLOR)

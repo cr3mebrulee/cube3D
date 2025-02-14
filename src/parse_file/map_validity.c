@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:20:28 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 13:31:36 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:10:49 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	count_players(t_game *game)
 
 	y = 0;
 	player_count = 0;
-	while (y < game->map.height)
+	while (y < game->map->height)
 	{
-		row_count = count_players_in_row(game->map.grid[y]);
+		row_count = count_players_in_row(game->map->grid[y]);
 		if (row_count == -1)
 			return (-1);
 		player_count += row_count;
