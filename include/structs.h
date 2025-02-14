@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/13 12:56:58 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:14:35 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_ray
 
 typedef struct s_texture
 {
+	t_img		*img;
 	int			*data;
 	int			width;
 	int			height;
