@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   opts_fill.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 16:32:13 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/14 16:02:32 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/14 16:36:22 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(int ac, char **av)
+int	check_debug_level(const char *str)
 {
-	char	*filename;
-	t_game	*game;
+	if (ft_strncmp(str, "--debug", 7) == 0)
+		return (1);
+	return (0);
+}
 
-	game = (t_game *)malloc(sizeof(t_game));
-	if (!game)
-		return (2);
-	game->opts.debug_output_level = 0;
-	if (opts_fill(ac -1, &av[1], game))
-		return(5);
-	filename = av[1];
-	init_game(game);
-	if (parse_file(filename, game))
+int	opts_fill(int argc, char **argv, t_game *game)
+{
+	if (argc == 0 || argc > 2)
 	{
-		free_game(game);
-		return (3);
+		ft_putstr_fd("cub3d usage: <map>, "
+			"<--debug> for debugging level (optional)\n", 2);
+		return (1);
 	}
-	if (game->opts.debug_output_level & DBG_PRINT_MAP)
-		print_map(game);
-	free_game(game);
+	if (argc == 1)
+		return (0);
+	if (argc == 2)
+	{
+		if (check_debug_level(argv[1]))
+			game->opts.debug_output_level = 2;
+	}
 	return (0);
 }

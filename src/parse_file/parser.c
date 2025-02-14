@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:21:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:33:00 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 16:47:24 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ int	parse_file(char *filename, t_game *game)
 	if (status != 0)
 		return (1);
 	find_and_set_player(game);
-	print_player(game);
-	print_colors(game);
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+	{
+		print_player(game);
+		print_colors(game);
+	}
 	status = validate_map_with_visited(game);
 	if (status != 0)
 	{

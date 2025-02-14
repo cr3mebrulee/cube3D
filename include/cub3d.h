@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 12:40:43 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:34:10 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@
 # define S_KEY 115
 # define D_KEY 100
 
+# define USAGE_MESSAGE "cub3d usage:\n map\n" \
+		 "--debug for debugging level (optional)\n"
+
+# define DBG_PRINT_MAP 2
+
 # include <stdio.h>
 # include <mlx.h>
 # include <errno.h>
@@ -34,5 +39,7 @@
 # include "../src/parse_file/parser.h"
 # include "../src/destructor/destructor.h"
 # include "../src/initialize_mlx_data/mlx_data_initialization.h"
+
+int	opts_fill(int argc, char **argv, t_game *game);
 
 #endif

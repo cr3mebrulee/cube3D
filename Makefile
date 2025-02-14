@@ -7,6 +7,10 @@ SRC_DIR = src
 OBJ_DIR = build
 PREFIX = @
 
+ifeq ($(DEBUG), 1)
+	CFLAGS += -DDEBUG
+endif
+
 MLX = -lmlx -lX11 -lXext -lm
 
 LIBFT_DIR = libft
@@ -28,7 +32,7 @@ PARSE_FILE_NAMES = parser.c parser_utils.c init_structs.c parse_map.c map_validi
 PARSE_FILE_DIR = parse_file
 PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
 
-SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_KEY_SRCS)
+SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_KEY_SRCS) opts_fill.c
 ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))
@@ -64,6 +68,9 @@ fclean: clean
 	$(PREFIX)cd $(LIBFT_DIR) && make fclean
 
 re: fclean all
+
+debug: DEBUG = 1
+debug: all
 
 .PHONY: all clean fclean re
 
