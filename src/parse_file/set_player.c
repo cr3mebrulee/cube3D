@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:51:39 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:46:17 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 12:05:56 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ void	find_and_set_player(t_game *game)
 			{
 				set_player_position(&game->player, x, y);
 				if (cell == 'N' || cell == 'S')
-					set_vertical_player(&game->player, cell);
+					set_vertical_directions(&game->player, cell);
 				else
-					set_horizontal_player(&game->player, cell);
+					set_horizontal_directions(&game->player, cell);
 				game->map.grid[y][x] = '0';
 				return ;
 			}

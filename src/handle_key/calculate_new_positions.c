@@ -12,8 +12,8 @@
 
 #include "handle_key_internal.h"
 
-checks whether a given (x, y) position in the game is walkable
-(i.e., not a wall)
+/*checks whether a given (x, y) position in the game is walkable
+(i.e., not a wall)*/
 int	is_walkable(t_game *game, double x, double y)
 {
 	int	maze_x;

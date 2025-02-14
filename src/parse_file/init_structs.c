@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:52:27 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 13:03:52 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:12:48 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	init_game(t_game *game)
 	game->mlx = NULL;
 	game->win = NULL;
 	game->img = NULL;
-	init_map(&game->map);
+	init_map(game->map);
 	init_player(&game->player);
 	init_ray(&game->ray);
 	init_texture(&game->no_texture);

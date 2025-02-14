@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/05 15:53:19 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:00:44 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
+	double	move_speed;
 }	t_player;
 
 typedef struct s_ray
@@ -48,9 +49,18 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
+typedef struct		s_img
+{
+	void	*ptr;
+	char	*addr;	// In my code I changed this to int *, which I will explain in a second
+	int		bpp; //when using ARGB this value is always 32
+	int		size_line;	//This value represents (your image width) * 4 which I will also explain after
+	int		endian;	//This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
+}	t_img;
+
 typedef struct s_texture
 {
-	void		*img;
+	t_img		*img;
 	int			*data;
 	int			width;
 	int			height;
@@ -60,9 +70,10 @@ typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
-	t_map		map;
+	t_img		*img;
+	t_map		*map;
 	t_player	player;
+	char		*data; // to get image data
 	t_ray		ray;
 	t_texture	no_texture;
 	t_texture	so_texture;
