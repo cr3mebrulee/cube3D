@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:00:41 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/13 12:49:33 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:57:44 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,22 +57,27 @@ int	handle_key(int keycode, t_game *game)
 	}
 	if (keycode == ESC)
 	{
-		if (game->win)
-			mlx_destroy_window(game->mlx, game->win);
-		if (game->img)
-			mlx_destroy_image(game->mlx, game->img);
-		if (game->mlx)
-			mlx_loop_end(game->mlx);
+		return (handle_close(game));
 	}
 	return (0);
 }
 
 int	handle_close(t_game *game)
 {
-	if (game->win)
-		mlx_destroy_window(game->mlx, game->win);
+	if (!game)
+		return (1);
 	if (game->img)
-		mlx_destroy_image(game->mlx, game->img);
+	{
+		if (game->img->ptr)
+			mlx_destroy_image(game->mlx, game->img->ptr);
+		free(game->img);
+		game->img = NULL;
+	}
+	if (game->win)
+	{
+		mlx_destroy_window(game->mlx, game->win);
+		game->win = NULL;
+	}
 	if (game->mlx)
 		mlx_loop_end(game->mlx);
 	return (0);

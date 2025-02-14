@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_key.h                                       :+:      :+:    :+:   */
+/*   main_tania.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 17:42:05 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/14 12:36:37 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/05 15:15:22 by dbisko            #+#    #+#             */
+/*   Updated: 2025/02/14 12:42:48 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HANDLE_KEY_H
-# define HANDLE_KEY_H
+#include "../include/cub3d.h"
 
-# include "../../include/structs.h"
-# include "../../include/cub3d.h"
-# include "handle_key_internal.h"
-# include "../initialize_mlx_data/mlx_data_initialization.h"
+int	main(void)
+{
+	t_game	game;
 
-int	handle_key(int keycode, t_game *game);
-int	handle_close(t_game *game);
-
-#endif
+	ft_memset(&game, 0, sizeof(t_game));
+	initialize_mlx_data(&game);
+	initialize_player(&game);
+	mlx_hook(game.win, 2, 1L<<0, handle_key, &game);
+	mlx_hook(game.win, 17, 0, handle_close, &game);
+	mlx_loop(game.mlx);
+	return (0);
+}

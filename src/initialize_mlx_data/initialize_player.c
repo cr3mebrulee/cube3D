@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_player.c                                      :+:      :+:    :+:   */
+/*   initialize_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 15:12:06 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/13 13:20:50 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 11:57:54 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_player(t_game *game, int px, int py)
 	printf("Player Position: x = %f, y = %f\n", game->player.x, game->player.y);
 }
 
-void	init_player(t_game *game)
+void	initialize_player(t_game *game)
 {
 	game->player.x = WIDTH / 2;
 	game->player.y = HEIGHT / 2;

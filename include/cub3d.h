@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 11:09:50 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 12:40:43 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,6 @@
 # include "../src/handle_key/handle_key.h"
 # include "../src/parse_file/parser.h"
 # include "../src/destructor/destructor.h"
-# include "../src/init_mlx_data/mlx_data_initialization.h"
+# include "../src/initialize_mlx_data/mlx_data_initialization.h"
 
 #endif

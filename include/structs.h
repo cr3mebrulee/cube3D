@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 11:14:35 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:00:44 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,6 @@ typedef struct s_ray
 	int		side;
 }	t_ray;
 
-typedef struct s_texture
-{
-	t_img		*img;
-	int			*data;
-	int			width;
-	int			height;
-}	t_texture;
-
 typedef struct		s_img
 {
 	void	*ptr;
@@ -66,17 +58,22 @@ typedef struct		s_img
 	int		endian;	//This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
 }	t_img;
 
+typedef struct s_texture
+{
+	t_img		*img;
+	int			*data;
+	int			width;
+	int			height;
+}	t_texture;
+
 typedef struct s_game
 {
 	void		*mlx;
 	void		*win;
 	t_img		*img;
-	t_map		map;
+	t_map		*map;
 	t_player	player;
 	char		*data; // to get image data
-	int			**maze;
-	int			maze_height;
-	int			maze_width;
 	t_ray		ray;
 	t_texture	no_texture;
 	t_texture	so_texture;
