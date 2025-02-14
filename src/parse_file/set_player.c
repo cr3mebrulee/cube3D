@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:51:39 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:46:17 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:33:34 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,20 +57,20 @@ void	find_and_set_player(t_game *game)
 	char	cell;
 
 	y = 0;
-	while (y < game->map.height)
+	while (y < game->map->height)
 	{
 		x = 0;
-		while (x < game->map.width)
+		while (x < game->map->width)
 		{
-			cell = game->map.grid[y][x];
+			cell = game->map->grid[y][x];
 			if (cell == 'N' || cell == 'S' || cell == 'E' || cell == 'W')
 			{
 				set_player_position(&game->player, x, y);
 				if (cell == 'N' || cell == 'S')
-					set_vertical_player(&game->player, cell);
+					set_vertical_directions(&game->player, cell);
 				else
-					set_horizontal_player(&game->player, cell);
-				game->map.grid[y][x] = '0';
+					set_horizontal_directions(&game->player, cell);
+				game->map->grid[y][x] = '0';
 				return ;
 			}
 			x++;

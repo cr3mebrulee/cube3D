@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:48:02 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 13:03:29 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:15:48 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,20 @@ void	free_map(t_game *game)
 {
 	int	i;
 
-	if (!game || !game->map.grid)
+	if (!game || !game->map->grid)
 		return ;
 	i = 0;
-	while (i < game->map.height)
+	while (i < game->map->height)
 	{
-		if (game->map.grid[i])
+		if (game->map->grid[i])
 		{
-			free(game->map.grid[i]);
-			game->map.grid[i] = NULL;
+			free(game->map->grid[i]);
+			game->map->grid[i] = NULL;
 		}
 		i++;
 	}
-	free(game->map.grid);
-	game->map.grid = NULL;
+	free(game->map->grid);
+	game->map->grid = NULL;
 }
 
 void	free_game(t_game *game)
@@ -53,7 +53,7 @@ void	free_game(t_game *game)
 	if (!game)
 		return ;
 	free_map(game);
-	free_textures(game);
+	// free_textures(game);
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)

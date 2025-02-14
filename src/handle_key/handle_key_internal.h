@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_key.h                                       :+:      :+:    :+:   */
+/*   handle_key_internal.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 17:42:05 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/14 12:36:37 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/10 17:42:13 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/13 12:43:44 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HANDLE_KEY_H
-# define HANDLE_KEY_H
+#ifndef HANDLE_KEY_INTERNAL_H
+# define HANDLE_KEY_INTERNAL_H
 
-# include "../../include/structs.h"
-# include "../../include/cub3d.h"
-# include "handle_key_internal.h"
-# include "../initialize_mlx_data/mlx_data_initialization.h"
+# include "handle_key.h"
 
-int	handle_key(int keycode, t_game *game);
-int	handle_close(t_game *game);
+int	calculate_new_w_position(t_game *game);
+int	calculate_new_s_position(t_game *game);
+int	calculate_new_a_position(t_game *game);
+int	calculate_new_d_position(t_game *game);
+int	is_walkable(t_game *game, double x, double y);
 
 #endif

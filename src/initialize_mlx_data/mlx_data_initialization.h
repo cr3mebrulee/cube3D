@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_key.h                                       :+:      :+:    :+:   */
+/*   mlx_data_initialization.h                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/10 17:42:05 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/14 12:36:37 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/12 15:41:29 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/14 11:58:07 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HANDLE_KEY_H
-# define HANDLE_KEY_H
+# ifndef MLX_DATA_INITIALIZATION_H
+# define MLX_DATA_INITIALIZATION_H
 
 # include "../../include/structs.h"
 # include "../../include/cub3d.h"
-# include "handle_key_internal.h"
-# include "../initialize_mlx_data/mlx_data_initialization.h"
+# include "../../libft/libft.h"
 
-int	handle_key(int keycode, t_game *game);
-int	handle_close(t_game *game);
+int		initialize_mlx_data(t_game *game);
+void	initialize_player(t_game *game);
+void	draw_player(t_game *game, int px, int py);
 
-#endif
+# endif

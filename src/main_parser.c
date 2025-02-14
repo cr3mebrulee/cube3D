@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:33:28 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:40:05 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,18 @@ int	main(int ac, char **av)
 	if (ac == 2)
 	{
 		filename = av[1];
-		game = (t_game *)malloc(sizeof(t_game));
+		game = malloc(sizeof(t_game));
 		if (!game)
 		{
 			ft_putstr_fd("Error: Malloc fail.\n", 2);
 			return (1);
 		}
-		init_game(game);
+		success = init_game(game);
+		if (success != 0)
+		{
+			free_game(game);
+			return (success);
+		}
 		success = parse_file(filename, game);
 		if (success == 0)
 			print_map(game);
