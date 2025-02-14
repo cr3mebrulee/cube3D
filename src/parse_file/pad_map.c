@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:25:52 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 13:33:46 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:15:00 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ int	normalize_map_width(t_game *game)
 	int	ret;
 
 	y = 0;
-	while (y < game->map.height)
+	while (y < game->map->height)
 	{
-		if ((int)ft_strlen(game->map.grid[y]) < game->map.width)
+		if ((int)ft_strlen(game->map->grid[y]) < game->map->width)
 		{
-			ret = pad_map_row(&game->map.grid[y], game->map.width);
+			ret = pad_map_row(&game->map->grid[y], game->map->width);
 			if (ret != 0)
 				return (1);
 		}

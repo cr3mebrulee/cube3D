@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:21:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:10:04 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 13:33:00 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	print_player(t_game *game)
 		game->player.dir_x, game->player.dir_y);
 	printf("Player camera plane: (%.2f, %.2f)\n",
 		game->player.plane_x, game->player.plane_y);
+	printf("Player speed: %.2f\n", game->player.move_speed);
 }
 
 void	print_colors(t_game *game)

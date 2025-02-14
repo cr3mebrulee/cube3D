@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:38 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:05:09 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 12:31:02 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void		init_map(t_map *map);
 void		init_player(t_player *player);
 void		init_ray(t_ray *ray);
 void		init_texture(t_texture *texture);
-void		init_game(t_game *game);
+int			init_game(t_game *game);
 
 // parse map
 int			parse_map(char *line, t_game *game);

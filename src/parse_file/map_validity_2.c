@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:11:29 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:48:27 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:13:19 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,21 +98,21 @@ static t_bool	**allocate_visited(t_point size)
 
 int	validate_map_with_visited(t_game *game)
 {
-	t_map	map;
+	t_map	*map;
 	t_point	size;
 	t_point	start;
 	t_bool	**visited;
 	t_bool	valid;
 
 	map = game->map; 
-	size.x = map.width; 
-	size.y = map.height;
+	size.x = map->width; 
+	size.y = map->height;
 	start.x = (int)game->player.x;
 	start.y = (int)game->player.y;
 	visited = allocate_visited(size);
 	if (!visited)
 		return (1);
-	valid = flood_fill_validate(map.grid, size, start, visited);
+	valid = flood_fill_validate(map->grid, size, start, visited);
 	free_bool_array(visited, size.y);
 	if (valid)
 		return (0);
