@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:31:28 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 13:48:43 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ typedef struct s_player
 	double	dir_y;
 	double	plane_x;
 	double	plane_y;
-	double	move_speed;
 	double	move_speed;
 }	t_player;
 

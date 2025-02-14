@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 12:40:43 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/14 16:33:45 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@
 # include "../libft/libft.h"
 # include <math.h>
 # include <stdlib.h>
-# include "../libft/libft.h"
 # include "structs.h"
 # include "../src/handle_key/handle_key.h"
 # include "../src/parse_file/parser.h"

@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:20:38 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 12:31:02 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 16:20:41 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,11 @@ int			get_color_from_tokens(char **tokens);
 // color utils 2
 int			assign_color_prefix(char **tokens, t_game *game, int color);
 int			check_color_token_count(char **tokens);
+
+// put textures
+int			parse_north(char *file_path, t_game *game);
+int			parse_south(char *file_path, t_game *game);
+int			parse_west(char *file_path, t_game *game);
+int			parse_east(char *file_path, t_game *game);
 
 #endif

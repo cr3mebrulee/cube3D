@@ -6,18 +6,11 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:52:27 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:32:19 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/14 16:36:13 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	init_map(t_map *map)
-{
-	map->grid = NULL;
-	map->width = 0;
-	map->height = 0;
-}
 
 void	init_player(t_player *player)
 {
@@ -67,22 +60,26 @@ void	init_img(t_img *img)
 
 int	init_game(t_game *game)
 {
-	game->mlx = NULL;
+	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		ft_putstr_fd("Error: mlx_init failed.\n", 2);
+		return (1);
+	}
 	game->win = NULL;
-	game->img = malloc(sizeof(t_img));
+	game->img = ft_calloc(1, sizeof(t_img));
 	if (!game->img)
 	{
 		ft_putstr_fd("Error: Memory allocation for game image failed.\n", 2);
 		return (1);
 	}
 	init_img(game->img);
-	game->map = malloc(sizeof(t_map));
+	game->map = ft_calloc(1, sizeof(t_map));
 	if (!game->map)
 	{
 		ft_putstr_fd("Error: Memory allocation for game map failed.\n", 2);
 		return (1);
 	}
-	init_map(game->map);
 	init_player(&game->player);
 	init_ray(&game->ray);
 	init_texture(&game->no_texture);
@@ -93,3 +90,5 @@ int	init_game(t_game *game)
 	game->ceiling_color = -1;
 	return (0);
 }
+
+
