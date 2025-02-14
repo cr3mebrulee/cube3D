@@ -29,7 +29,6 @@ typedef struct s_player
 	double	plane_x;
 	double	plane_y;
 	double	move_speed;
-	double	move_speed;
 }	t_player;
 
 typedef struct s_ray
