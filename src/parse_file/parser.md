@@ -79,7 +79,7 @@ Once the map is parsed:
 
 The parsed data is stored in a central structure (t_game). 
 This structure contains:
-- File paths for textures
+- MLX image for each texture
 - RGB values for floor and ceiling
 - A 2D array representing the map
 - Player’s starting position and direction
