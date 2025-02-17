@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:11:29 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:13:19 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/17 10:18:00 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,5 +116,6 @@ int	validate_map_with_visited(t_game *game)
 	free_bool_array(visited, size.y);
 	if (valid)
 		return (0);
+	ft_putstr_fd("Error: Map is not valid.\n", 2);
 	return (1);
 }

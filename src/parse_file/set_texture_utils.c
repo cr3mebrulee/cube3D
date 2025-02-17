@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_textures.c                                     :+:      :+:    :+:   */
+/*   set_texture_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:16:56 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 16:17:21 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/17 10:37:45 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	parse_north(char *file_path, t_game *game)
 {
-	game->no_texture.img = ft_calloc(1,sizeof(t_img));
+	game->no_texture.img = ft_calloc(1, sizeof(t_img));
 	if (!game->no_texture.img)
 	{
 		ft_putstr_fd("Error: Memory allocation for t_img failed.\n", 2);
@@ -36,7 +36,7 @@ int	parse_north(char *file_path, t_game *game)
 
 int	parse_south(char *file_path, t_game *game)
 {
-	game->so_texture.img = ft_calloc(1,sizeof(t_img));
+	game->so_texture.img = ft_calloc(1, sizeof(t_img));
 	if (!game->so_texture.img)
 	{
 		ft_putstr_fd("Error: Memory allocation for t_img failed.\n", 2);
@@ -97,5 +97,27 @@ int	parse_east(char *file_path, t_game *game)
 			&game->ea_texture.img->bpp, &game->ea_texture.img->size_line,
 			&game->ea_texture.img->endian);
 	game->ea_texture.data = (int *)game->ea_texture.img->addr;
+	return (0);
+}
+
+int	extract_texture_info(const char *line, char **id, char **filepath)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] && ft_isspace(line[i]))
+		i++;
+	*id = ft_substr(line, i, 2);
+	if (!(*id))
+		return (1);
+	i += 2;
+	while (line[i] && ft_isspace(line[i]))
+		i++;
+	*filepath = ft_strtrim(line + i, " \t\n");
+	if (!(*filepath))
+	{
+		free(*id);
+		return (1);
+	}
 	return (0);
 }

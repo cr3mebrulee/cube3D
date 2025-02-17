@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 16:33:45 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/17 09:38:47 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define PLAYER_COLOR 0xFFFFFF
+# define PLAYER_SPEED 3
 # define ESC 65307
 # define W_KEY 119
 # define A_KEY 97

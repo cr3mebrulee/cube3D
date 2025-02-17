@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:48:02 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 14:37:03 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:54:08 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,25 +44,27 @@ void	free_textures(t_game *game)
 	}
 }
 
-
 void	free_map(t_game *game)
 {
 	int	i;
 
-	if (!game || !game->map || !game->map->grid)
+	if (!game || !game->map)
 		return ;
-	i = 0;
-	while (i < game->map->height)
+	if (game->map->grid)
 	{
-		if (game->map->grid[i])
+		i = 0;
+		while (i < game->map->height)
 		{
-			free(game->map->grid[i]);
-			game->map->grid[i] = NULL;
+			if (game->map->grid[i])
+			{
+				free(game->map->grid[i]);
+				game->map->grid[i] = NULL;
+			}
+			i++;
 		}
-		i++;
+		free(game->map->grid);
+		game->map->grid = NULL;
 	}
-	free(game->map->grid);
-	game->map->grid = NULL;
 	free(game->map);
 	game->map = NULL;
 }
@@ -74,6 +76,13 @@ void	free_game(t_game *game)
 		return ;
 	free_map(game);
 	free_textures(game);
+	if (game->img)
+	{
+		if (game->img->ptr && game->mlx)
+			mlx_destroy_image(game->mlx, game->img->ptr);
+		free(game->img);
+		game->img = NULL;
+	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
@@ -82,13 +91,7 @@ void	free_game(t_game *game)
 		free(game->mlx);
 		game->mlx = NULL;
 	}
-	if (game->img)
-	{
-		if (game->img->ptr)
-			mlx_destroy_image(game->mlx, game->img->ptr);
-		free(game->img);
-		game->img = NULL;
-	}
 	free(game);
 }
+
 
