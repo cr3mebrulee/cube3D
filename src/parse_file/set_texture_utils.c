@@ -6,11 +6,21 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:16:56 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 10:37:45 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:57:34 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+// parse_* - Loads and initializes a texture from a file.
+// @file_path: Path to the texture file.
+// @game: Pointer to the game structure.
+//
+// These functions allocate memory for the texture, load the image using
+// MiniLibX (`mlx_xpm_file_to_image`), and store the image data in the
+// corresponding texture field (`no_texture`, `so_texture`, etc.).
+// If memory allocation or image loading fails, an error message is printed,
+// and the function returns 1. Otherwise, it returns 0.
 
 int	parse_north(char *file_path, t_game *game)
 {
@@ -100,6 +110,10 @@ int	parse_east(char *file_path, t_game *game)
 	return (0);
 }
 
+// Trims whitespace and extracts both the texture identifier
+// and the file path. If allocation fails, 
+// it frees allocated memory and returns 1.
+// Returns 0 on success, 1 on failure.
 int	extract_texture_info(const char *line, char **id, char **filepath)
 {
 	int	i;

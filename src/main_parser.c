@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 13:45:48 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:14:03 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,23 +145,11 @@ int	main(int ac, char **av)
 		ft_putstr_fd("Error: Malloc fail.\n", 2);
 		return (1);
 	}
-
-	success = init_game(game);
-	if (success != 0)
-	{
-		free_game(game);
-		return (success);
-	}
 	success = parse_file(filename, game);
 	if (success != 0)
-	{
-		free_game(game);
-		return (success);
-	}
+		return (1);
 	printf("Parser DONE\n");
 	// print_game(game);
-	// test_window(game);
-	// mlx_loop(game->mlx);
 	free_game(game);
 	return (success);
 }

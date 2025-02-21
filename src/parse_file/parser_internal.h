@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:38:05 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 14:49:26 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:40:26 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ typedef enum e_bool
 	true = 1
 }	t_bool;
 
+// enum e_line_error - Defines possible errors when parsing a line.
+// @LINE_ERR_NONE: No error, line is valid.
+// @LINE_ERR_INVALID_MAP_CHAR: Map contains an invalid character.
+// @LINE_ERR_MAP_OUT_OF_ORDER: Map appears before configuration is complete.
+// @LINE_ERR_INVALID_LINE: Line does not match any expected format.
+
 typedef enum e_line_error
 {
 	LINE_ERR_NONE = 0,
@@ -51,6 +57,14 @@ typedef enum e_line_error
 	LINE_ERR_MAP_OUT_OF_ORDER,
 	LINE_ERR_INVALID_LINE
 }	t_line_error;
+
+// struct s_line_result - Stores the classification and error status of a line.
+// @type: The type of line (MAP, TEXTURE, FC_COLOR, INVALID, etc.).
+// @error: The error status associated with the line, using t_line_error.
+//
+// This struct is used to categorize each line in the .cub file and detect
+// possible errors. It is returned by functions like identify_line_type() and
+// process_map_mode() to determine how a line should be handled.
 
 typedef struct s_line_result
 {

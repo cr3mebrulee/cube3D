@@ -6,12 +6,14 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:50:09 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 14:33:45 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:43:47 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+// process_map_mode - Checks if a line belongs to the map section.
+// Returns MAP if valid, INVALID if it contains errors.
 t_line_result	process_map_mode(char *line)
 {
 	t_line_result	result;
@@ -38,6 +40,8 @@ t_line_result	process_map_mode(char *line)
 	return (result);
 }
 
+// process_config_line - Identifies configuration lines (textures, colors).
+// Returns TEXTURE, FC_COLOR, EMPTY, or INVALID.
 t_line_result	process_config_line(char *line)
 {
 	t_line_result	result;
@@ -67,6 +71,8 @@ t_line_result	process_config_line(char *line)
 	return (result);
 }
 
+// identify_line_type - Determines if a line is a map, config, or invalid.
+// Updates `map_started` if the map section begins.
 t_line_result	identify_line_type(char *line, t_bool *map_started)
 {
 	t_line_result	result;
@@ -86,6 +92,8 @@ t_line_result	identify_line_type(char *line, t_bool *map_started)
 	return (process_config_line(line));
 }
 
+// handle_line - Directs the parsed line to the appropriate function.
+// Returns 0 on success, 1 on error.
 int	handle_line(char *line, t_bool *map_started, 
 	t_line_result res, t_game *game)
 {
@@ -112,6 +120,23 @@ int	handle_line(char *line, t_bool *map_started,
 	}
 	return (0);
 }
+
+// process_file_lines - Reads and processes each line of the .cub file.
+// @fd: File descriptor of the opened .cub file.
+// @game: Pointer to the game structure where parsed data is stored.
+// 
+// This function performs the following tasks:
+// 1. Reads the file line by line using `get_next_line()`.
+// 2. Identifies the type of each line (map, texture, color, etc.).
+// 3. Handles empty lines and validates the file structure.
+// 4. Calls the appropriate parsing function based on the line type.
+// 5. Ensures that map lines appear only after the configuration section.
+// 6. If any error occurs (invalid configuration, bad formatting), 
+//    parsing stops.
+//
+// If the file is empty or contains invalid content, an error is returned.
+
+// Return: 0 on success, 1 on failure.
 
 int	process_file_lines(int fd, t_game *game)
 {

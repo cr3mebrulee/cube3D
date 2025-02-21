@@ -6,11 +6,22 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 14:44:29 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 14:49:39 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:51:58 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
+
+// parse_*_texture_line - Parses a specific texture type (NO, SO, WE, EA).
+// @identifier: The texture type identifier from the .cub file.
+// @file_path: The path to the texture file.
+// @game: Pointer to the game structure.
+//
+// Each function checks if the identifier matches the expected texture type.
+// If a texture has already been assigned, it prints an error and returns 1.
+// Otherwise, it calls the corresponding texture parsing function.
+// Returns 1 on duplicate texture, calls respective parser on success, 
+// -1 if not the expected type.
 
 int	parse_no_texture_line(char *identifier, char *file_path, t_game *game)
 {

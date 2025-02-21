@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:11:29 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 10:18:00 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 12:18:07 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,15 @@ void	free_bool_array(t_bool **array, int rows)
 	free(array);
 }
 
+// Recursively explores the map to check if it's enclosed by walls.
+//
+// - If the current position is **out of bounds**, 
+//   return false (map is invalid).
+// - If the cell is a wall ('1') or has already been visited, return true.
+// - Otherwise, mark the cell as visited 
+//   and recursively explore left, right, up, and down.
+// - If all four directions return true, 
+//   the map is enclosed; otherwise, it's invalid.
 t_bool	flood_fill_validate(char **map, t_point size, 
 	t_point current, t_bool **visited)
 {
@@ -96,6 +105,16 @@ static t_bool	**allocate_visited(t_point size)
 	return (visited);
 }
 
+// Checks if the map is enclosed using flood fill.
+// 
+// 1. Initializes a 2D boolean array to track visited positions.
+// 2. Starts flood fill from the player's position.
+// 3. Frees the visited array and determines whether the map is valid.
+// 
+// If the map is not enclosed, an error is printed.
+// 
+// Returns 0 if the map is valid, 
+// 1 if it's not enclosed or if memory allocation fails.
 int	validate_map_with_visited(t_game *game)
 {
 	t_map	*map;

@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:25:52 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:15:00 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 12:08:21 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static int	pad_map_row(char **row, int target_width)
 	return (0);
 }
 
+// Ensures all rows in the map have the same width.
+// Function iterates through each row of the map grid and checks its length.
+// If a row is shorter than the longest row (`game->map->width`), it is padded
+// with spaces using `pad_map_row()`.
+// This prevents rendering issues and ensures consistent map parsing.
+// Returns 0 on success, 1 if memory allocation fails.
 int	normalize_map_width(t_game *game)
 {
 	int	y;
