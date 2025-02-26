@@ -24,15 +24,15 @@ INIT_MLX_DATA_NAMES = initialize_player.c initialize_mlx_data.c
 INIT_MLX_DATA_DIR = initialize_mlx_data
 INIT_MLX_DATA_SRCS =  $(addprefix $(INIT_MLX_DATA_DIR)/, $(INIT_MLX_DATA_NAMES))
 
-DESTRUCTOR_KEY_NAMES = free_utils.c
-DESTRUCTOR_KEY_DIR = destructor
-DESTRUCTOR_KEY_SRCS =  $(addprefix $(DESTRUCTOR_KEY_DIR)/, $(DESTRUCTOR_KEY_NAMES))
+DESTRUCTOR_NAMES = free_utils.c
+DESTRUCTOR_DIR = destructor
+DESTRUCTOR_SRCS =  $(addprefix $(DESTRUCTOR_DIR)/, $(DESTRUCTOR_NAMES))
 
-PARSE_FILE_NAMES = parser.c parser_utils.c init_structs.c parse_map.c map_validity.c map_validity_2.c set_player.c process_line.c pad_map.c put_C_F_color.c color_utils.c color_utils_2.c
+PARSE_FILE_NAMES = parser.c parser_utils.c parser_utils_2.c init_structs.c init_structs_utils.c parse_map.c map_validity.c map_validity_2.c set_player.c process_line.c pad_map.c set_C_F_color.c color_utils.c color_utils_2.c set_texture.c set_texture_utils.c set_texture_utils_2.c
 PARSE_FILE_DIR = parse_file
 PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
 
-SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_KEY_SRCS) opts_fill.c
+SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) opts_fill.c $(INIT_MLX_DATA_SRCS)
 ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))
@@ -84,7 +84,7 @@ TANIA_ENDPOINT_SRC = $(addprefix $(SRC_DIR)/, $(TANIA_ENDPOINT_NAME))
 TANIA_ENDPOINT_OBJ = $(TANIA_OBJ_DIR)/$(TANIA_ENDPOINT_NAME:.c=.o)
 
 # Include all necessary sources for Tania
-TANIA_SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_KEY_SRCS) $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS)
+TANIA_SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS)
 TANIA_SRC = $(addprefix $(SRC_DIR)/, $(TANIA_SRC_NAMES))
 TANIA_OBJ = $(patsubst $(SRC_DIR)/%.c, $(TANIA_OBJ_DIR)/%.o, $(TANIA_SRC))
 

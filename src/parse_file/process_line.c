@@ -6,184 +6,159 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 12:50:09 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 12:55:57 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:43:47 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-t_line_type	identify_line_type(char *line, t_bool *map_started)
+// process_map_mode - Checks if a line belongs to the map section.
+// Returns MAP if valid, INVALID if it contains errors.
+t_line_result	process_map_mode(char *line)
 {
-	if (*map_started)
+	t_line_result	result;
+	t_line_error	err;
+
+	err = check_map_line_validity(line);
+	if (err == LINE_ERR_NONE)
 	{
-		if (is_map_line(line))
-			return (MAP);
-		return (INVALID);
-	}
-	if (is_map_line(line))
-	{
-		*map_started = true;
-		return (MAP);
-	}
-	line = tidy_line(line);
-	if (*line == '\0')
-		return (EMPTY);
-	if ((ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
-			|| ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0)
-		&& ft_isspace(line[2]))
-		return (TEXTURE);
-	if ((line[0] == 'F' || line[0] == 'C') && ft_isspace(line[1]))
-		return (FC_COLOR);
-	return (INVALID);
-}
-
-int	extract_texture_info(const char *line, char **identifier, char **filepath)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && ft_isspace(line[i]))
-		i++;
-	*identifier = ft_substr(line, i, 2);
-	if (!(*identifier))
-		return (1);
-	i += 2;
-	while (line[i] && ft_isspace(line[i]))
-		i++;
-	*filepath = ft_strtrim(line + i, " \t\n");
-	if (!(*filepath))
-	{
-		free(*identifier);
-		return (1);
-	}
-	return (0);
-}
-
-
-int	parse_texture(char *line, t_game *game)
-{
-	char	*identifier;
-	char	*file_path;
-
-	if (extract_texture_info(line, &identifier, &file_path) != 0)
-	{
-		fprintf(stderr, "Error: Failed to extract texture info from line.\n");
-		return (1);
-	}
-
-	// Example for "NO" texture – add similar blocks for "SO", "WE", and "EA" as needed.
-	if (ft_strncmp(identifier, "NO", 2) == 0)
-	{
-		// Allocate the t_img structure for the texture.
-		game->no_texture.img = malloc(sizeof(t_img));
-		if (!game->no_texture.img)
-		{
-			fprintf(stderr, "Error: Memory allocation for t_img failed.\n");
-			free(identifier);
-			free(file_path);
-			return (1);
-		}
-
-		// Load the image. The width and height are stored directly in the texture.
-		game->no_texture.img->ptr = mlx_xpm_file_to_image(game->mlx, file_path,
-			&game->no_texture.width, &game->no_texture.height);
-		if (!game->no_texture.img->ptr)
-		{
-			fprintf(stderr, "Error: Failed to load NO texture from \"%s\".\n", file_path);
-			free(game->no_texture.img);
-			free(identifier);
-			free(file_path);
-			return (1);
-		}
-
-		// Get the image's pixel data and store pixel format info in t_img.
-		game->no_texture.img->addr = mlx_get_data_addr(game->no_texture.img->ptr,
-			&game->no_texture.img->bpp, &game->no_texture.img->size_line,
-			&game->no_texture.img->endian);
-
-		// Save the pixel data pointer in the texture structure.
-		game->no_texture.data = (int *)game->no_texture.img->addr;
+		result.type = MAP;
+		result.error = LINE_ERR_NONE;
 	}
 	else
 	{
-		fprintf(stderr, "Error: Unknown texture identifier \"%s\".\n", identifier);
-		free(identifier);
-		free(file_path);
-		return (1);
+		result.type = INVALID;
+		if (err == LINE_ERR_INVALID_MAP_CHAR)
+		{
+			result.error = LINE_ERR_INVALID_MAP_CHAR;
+		}
+		else
+		{
+			result.error = LINE_ERR_MAP_OUT_OF_ORDER;
+		}
 	}
-
-	free(identifier);
-	free(file_path);
-	return (0);
+	return (result);
 }
 
-
-
-int	handle_line(char *line, t_bool *map_started,
-	t_line_type type, t_game *game)
+// process_config_line - Identifies configuration lines (textures, colors).
+// Returns TEXTURE, FC_COLOR, EMPTY, or INVALID.
+t_line_result	process_config_line(char *line)
 {
-	if (type == EMPTY)
-		return (0);
-	if (type == MAP)
+	t_line_result	result;
+
+	if (*line == '\0')
+	{
+		result.type = EMPTY;
+		result.error = LINE_ERR_NONE;
+		return (result);
+	}
+	if ((ft_strncmp(line, "NO", 2) == 0 || ft_strncmp(line, "SO", 2) == 0
+			|| ft_strncmp(line, "WE", 2) == 0 || ft_strncmp(line, "EA", 2) == 0)
+		&& ft_isspace(line[2]))
+	{
+		result.type = TEXTURE;
+		result.error = LINE_ERR_NONE;
+		return (result);
+	}
+	if ((line[0] == 'F' || line[0] == 'C') && ft_isspace(line[1]))
+	{
+		result.type = FC_COLOR;
+		result.error = LINE_ERR_NONE;
+		return (result);
+	}
+	result.type = INVALID;
+	result.error = LINE_ERR_INVALID_LINE;
+	return (result);
+}
+
+// identify_line_type - Determines if a line is a map, config, or invalid.
+// Updates `map_started` if the map section begins.
+t_line_result	identify_line_type(char *line, t_bool *map_started)
+{
+	t_line_result	result;
+
+	if (*map_started)
+	{
+		return (process_map_mode(line));
+	}
+	if (check_map_line_validity(line) == LINE_ERR_NONE)
+	{
+		*map_started = true;
+		result.type = MAP;
+		result.error = LINE_ERR_NONE;
+		return (result);
+	}
+	line = tidy_line(line);
+	return (process_config_line(line));
+}
+
+// handle_line - Directs the parsed line to the appropriate function.
+// Returns 0 on success, 1 on error.
+int	handle_line(char *line, t_bool *map_started, 
+	t_line_result res, t_game *game)
+{
+	if (res.type == MAP)
 	{
 		*map_started = true;
 		if (parse_map(line, game))
-		{
-			ft_putstr_fd("Error: Failed to parse map.\n", 2);
 			return (1);
-		}
 		return (0);
 	}
+	if (res.type == INVALID)
+		return (print_invalid_line_error(*map_started, res));
 	if (!validate_pre_map_section(*map_started))
 		return (1);
-	if (type == TEXTURE)
+	if (res.type == TEXTURE)
 	{
-		// parse_texture(line, game);
-		printf("[DEBUG] Texture line: %s\n", line);
+		if (parse_texture(line, game))
+			return (1);
 	}
-	else if (type == FC_COLOR)
+	else if (res.type == FC_COLOR)
 	{
 		if (parse_color_line(line, game))
 			return (1);
 	}
-	else if (type == INVALID)
-	{
-		ft_putstr_fd("Error: Invalid input line. "
-			"Check for incorrect characters.\n", 2);
-		return (1);
-	}
 	return (0);
 }
 
-void	remove_newline(char *line)
-{
-	if (!line)
-		return ;
-	while (*line)
-	{
-		if (*line == '\n')
-		{
-			*line = '\0';
-			break ;
-		}
-		line++;
-	}
-}
+// process_file_lines - Reads and processes each line of the .cub file.
+// @fd: File descriptor of the opened .cub file.
+// @game: Pointer to the game structure where parsed data is stored.
+// 
+// This function performs the following tasks:
+// 1. Reads the file line by line using `get_next_line()`.
+// 2. Identifies the type of each line (map, texture, color, etc.).
+// 3. Handles empty lines and validates the file structure.
+// 4. Calls the appropriate parsing function based on the line type.
+// 5. Ensures that map lines appear only after the configuration section.
+// 6. If any error occurs (invalid configuration, bad formatting), 
+//    parsing stops.
+//
+// If the file is empty or contains invalid content, an error is returned.
+
+// Return: 0 on success, 1 on failure.
 
 int	process_file_lines(int fd, t_game *game)
 {
-	char		*line;
-	t_bool		map_started;
-	t_line_type	type;
-	int			status;
+	char			*line;
+	t_bool			map_started;
+	t_line_result	res;
+	int				status;
 
 	map_started = false;
 	line = get_next_line(fd);
+	if (check_empty_file(line))
+		return (1);
 	while (line)
 	{
 		remove_newline(line);
-		type = identify_line_type(line, &map_started);
-		status = handle_line(line, &map_started, type, game);
+		res = identify_line_type(line, &map_started);
+		if (res.type == EMPTY)
+		{
+			line = handle_empty_line(line, fd);
+			continue ;
+		}
+		status = handle_line(line, &map_started, res, game);
 		free(line);
 		if (status == 1)
 			return (1);

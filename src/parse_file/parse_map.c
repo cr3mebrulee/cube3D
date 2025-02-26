@@ -6,12 +6,14 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:02:39 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:33:46 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:45:21 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
+// append_line_to_map - Adds a new row to the map grid.
+// Returns 0 on success, 1 on memory allocation failure.
 static int	append_line_to_map(t_game *game, char *line)
 {
 	char	*dup_line;
@@ -32,6 +34,8 @@ static int	append_line_to_map(t_game *game, char *line)
 	return (0);
 }
 
+// parse_map - Expands the map grid dynamically and adds a new line.
+// Returns 0 on success, 1 on memory allocation failure.
 int	parse_map(char *line, t_game *game)
 {
 	char	**new_grid;
