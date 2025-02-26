@@ -20,7 +20,7 @@ HANDLE_KEY_NAMES = handle_key.c calculate_new_positions.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 
-SET_MLX_DATA_NAMES = set_player.c set_mlx_data.c
+SET_MLX_DATA_NAMES = draw_player.c set_mlx_data.c
 SET_MLX_DATA_DIR = set_mlx_data
 SET_MLX_DATA_SRCS =  $(addprefix $(SET_MLX_DATA_DIR)/, $(SET_MLX_DATA_NAMES))
 
