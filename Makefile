@@ -20,9 +20,9 @@ HANDLE_KEY_NAMES = handle_key.c calculate_new_positions.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 
-INIT_MLX_DATA_NAMES = initialize_player.c initialize_mlx_data.c
-INIT_MLX_DATA_DIR = initialize_mlx_data
-INIT_MLX_DATA_SRCS =  $(addprefix $(INIT_MLX_DATA_DIR)/, $(INIT_MLX_DATA_NAMES))
+SET_MLX_DATA_NAMES = set_player.c set_mlx_data.c
+SET_MLX_DATA_DIR = set_mlx_data
+SET_MLX_DATA_SRCS =  $(addprefix $(SET_MLX_DATA_DIR)/, $(SET_MLX_DATA_NAMES))
 
 DESTRUCTOR_NAMES = free_utils.c
 DESTRUCTOR_DIR = destructor
@@ -32,7 +32,11 @@ PARSE_FILE_NAMES = parser.c parser_utils.c parser_utils_2.c init_structs.c init_
 PARSE_FILE_DIR = parse_file
 PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
 
-SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) opts_fill.c $(INIT_MLX_DATA_SRCS)
+INTERNAL_SETTINGS_NAMES = finalize.c debug_mode_utils.c
+INTERNAL_SETTINGS_DIR = internal_settings
+INTERNAL_SETTINGS_SRCS =  $(addprefix $(INTERNAL_SETTINGS_DIR)/, $(INTERNAL_SETTINGS_NAMES))
+
+SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) opts_fill.c $(SET_MLX_DATA_SRCS) $(INTERNAL_SETTINGS_SRCS)
 ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))
@@ -84,7 +88,7 @@ TANIA_ENDPOINT_SRC = $(addprefix $(SRC_DIR)/, $(TANIA_ENDPOINT_NAME))
 TANIA_ENDPOINT_OBJ = $(TANIA_OBJ_DIR)/$(TANIA_ENDPOINT_NAME:.c=.o)
 
 # Include all necessary sources for Tania
-TANIA_SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS)
+TANIA_SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS) $(INTERNAL_SETTINGS_SRCS)
 TANIA_SRC = $(addprefix $(SRC_DIR)/, $(TANIA_SRC_NAMES))
 TANIA_OBJ = $(patsubst $(SRC_DIR)/%.c, $(TANIA_OBJ_DIR)/%.o, $(TANIA_SRC))
 

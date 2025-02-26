@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_tania.c                                       :+:      :+:    :+:   */
+/*   finalize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:15:22 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 14:21:35 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/26 12:42:52 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/26 13:15:13 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	main(void)
+int	finalize(t_game *game, char *message, int retval)
 {
-	t_game	game;
-
-	ft_memset(&game, 0, sizeof(t_game));
-	initialize_mlx_data(&game);
-	set_up_player(&game);
-	mlx_hook(game.win, 2, 1L<<0, handle_key, &game);
-	mlx_hook(game.win, 17, 0, handle_close, &game);
-	mlx_loop(game.mlx);
-	return (0);
+	if (game)
+	{
+		free_game(game);
+	}
+	if (message)
+		printf("%s\n", message);
+	return (retval);
 }

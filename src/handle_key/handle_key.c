@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:00:41 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/14 12:57:44 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:56:56 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,11 @@
 
 void	render_scene(t_game *game)
 {
+	if (!game || !game->mlx || !game->win)
+    {
+        fprintf(stderr, "Error: Invalid mlx or window\n");
+        return;
+    }
 	// Clear the window (optional, depends on rendering method)
 	mlx_clear_window(game->mlx, game->win);
 	// Draw the maze (walls, floor, etc.)

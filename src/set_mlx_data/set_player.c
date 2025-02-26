@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_player.c                                      :+:      :+:    :+:   */
+/*   set_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_data_initialization.h"
+#include "set_mlx_data.h"
 
 void	draw_player(t_game *game, int px, int py)
 {
@@ -19,7 +19,7 @@ void	draw_player(t_game *game, int px, int py)
 	printf("Player Position: x = %f, y = %f\n", game->player.x, game->player.y);
 }
 
-void	initialize_player(t_game *game)
+void	set_player(t_game *game)
 {
 	game->player.x = WIDTH / 2;
 	game->player.y = HEIGHT / 2;
@@ -27,6 +27,6 @@ void	initialize_player(t_game *game)
 	game->player.dir_y = 0.0;
 	game->player.plane_x = 0.0;
 	game->player.plane_y = 0.66;
-	game->player.move_speed = 3;
+	game->player.move_speed = PLAYER_SPEED;
 	draw_player(game, (int)game->player.x, (int)game->player.y);
 }

@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:21:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 12:11:25 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/26 15:08:27 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,28 +38,22 @@ int	free_and_return(t_game *game)
 int	parse_file(char *filename, t_game *game)
 {
 	int	fd;
-	int	status;
 
-	status = init_game(game);
-	if (status != 0)
-		return (free_and_return(game));
+	if (init_game(game))
+		return (1);
 	fd = open_file(filename);
 	if (fd == -1)
-		return (free_and_return(game));
-	status = process_file_lines(fd, game);
-	close(fd);
-	if (status != 0)
-		return (free_and_return(game));
-	if (normalize_map_width(game) != 0 || validate_single_player(game) != 0)
-		return (free_and_return(game));
-	find_and_set_player(game);
-	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		return (1);
+	if (process_file_lines(fd, game))
 	{
-		print_player(game);
-		print_colors(game);
+		close (fd);
+		return (1);
 	}
-	status = validate_map_with_visited(game);
-	if (status != 0)
-		return (free_and_return(game));
-	return (status);
+	close(fd);
+	if (normalize_map_width(game) != 0 || validate_single_player(game) != 0)
+		return (1);
+	find_and_set_player(game);
+	if (validate_map_with_visited(game))
+		return (1);
+	return (0);
 }

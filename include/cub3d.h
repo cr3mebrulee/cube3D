@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 12:08:16 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/26 14:25:16 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@
 # include "../src/handle_key/handle_key.h"
 # include "../src/parse_file/parser.h"
 # include "../src/destructor/destructor.h"
-# include "../src/initialize_mlx_data/mlx_data_initialization.h"
+# include "../src/set_mlx_data/set_mlx_data.h"
+# include "../src/internal_settings/internal_settings.h"
 
 int	opts_fill(int argc, char **argv, t_game *game);
 

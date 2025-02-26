@@ -1,26 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_tania.c                                       :+:      :+:    :+:   */
+/*   set_mlx_data.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:15:22 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 14:21:35 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/12 15:41:29 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/26 14:39:36 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+# ifndef SET_MLX_DATA_H
+# define SET_MLX_DATA_H
 
-int	main(void)
-{
-	t_game	game;
+# include "../../include/structs.h"
+# include "../../include/cub3d.h"
+# include "../../libft/libft.h"
 
-	ft_memset(&game, 0, sizeof(t_game));
-	initialize_mlx_data(&game);
-	set_up_player(&game);
-	mlx_hook(game.win, 2, 1L<<0, handle_key, &game);
-	mlx_hook(game.win, 17, 0, handle_close, &game);
-	mlx_loop(game.mlx);
-	return (0);
-}
+int		set_mlx_data(t_game *game);
+void	set_player(t_game *game);
+void	draw_player(t_game *game, int px, int py);
+
+# endif
