@@ -6,89 +6,68 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:52:27 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:32:19 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 11:34:48 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	init_map(t_map *map)
+static int	init_game_resources(t_game *game)
 {
-	map->grid = NULL;
-	map->width = 0;
-	map->height = 0;
-}
-
-void	init_player(t_player *player)
-{
-	player->x = 0;
-	player->y = 0;
-	player->dir_x = 0;
-	player->dir_y = 0;
-	player->plane_x = 0;
-	player->plane_y = 0;
-	player->move_speed = 3;
-}
-
-void	init_ray(t_ray *ray)
-{
-	ray->camera_x = 0;
-	ray->ray_dir_x = 0;
-	ray->ray_dir_y = 0;
-	ray->map_x = 0;
-	ray->map_y = 0;
-	ray->side_dist_x = 0;
-	ray->side_dist_y = 0;
-	ray->delta_dist_x = 0;
-	ray->delta_dist_y = 0;
-	ray->perp_wall_dist = 0;
-	ray->step_x = 0;
-	ray->step_y = 0;
-	ray->hit = 0;
-	ray->side = 0;
-}
-
-void	init_texture(t_texture *texture)
-{
-	texture->img = NULL;
-	texture->data = NULL;
-	texture->width = 0;
-	texture->height = 0;
-}
-
-void	init_img(t_img *img)
-{
-	img->ptr = NULL;
-	img->addr = NULL;
-	img->bpp = 0;
-	img->size_line = 0;
-	img->endian = 0;
-}
-
-int	init_game(t_game *game)
-{
-	game->mlx = NULL;
-	game->win = NULL;
-	game->img = malloc(sizeof(t_img));
+	game->img = ft_calloc(1, sizeof(t_img));
 	if (!game->img)
 	{
 		ft_putstr_fd("Error: Memory allocation for game image failed.\n", 2);
 		return (1);
 	}
 	init_img(game->img);
-	game->map = malloc(sizeof(t_map));
+	game->map = ft_calloc(1, sizeof(t_map));
 	if (!game->map)
 	{
 		ft_putstr_fd("Error: Memory allocation for game map failed.\n", 2);
 		return (1);
 	}
-	init_map(game->map);
-	init_player(&game->player);
-	init_ray(&game->ray);
+	return (0);
+}
+
+static void	init_game_textures(t_game *game)
+{
 	init_texture(&game->no_texture);
 	init_texture(&game->so_texture);
 	init_texture(&game->we_texture);
 	init_texture(&game->ea_texture);
+}
+
+// init_game - Initializes the game structure and resources.
+// @game: Pointer to the game structure to be initialized.
+//
+// This function performs the following initialization steps:
+// 1. Establishes a connection to the graphical environment 
+//    using MiniLibX (`mlx_init`).
+// 2. Allocates memory for game resources such as images and maps.
+// 3. Initializes player and ray structures.
+// 4. Sets up default texture placeholders.
+// 5. Initializes floor and ceiling colors to an undefined state (-1).
+//
+// If any step fails (e.g., MLX fails to initialize or memory allocation fails),
+// the function returns an error code and prints an error message.
+// 
+// Return: 0 on success, 1 on failure.
+
+int	init_game(t_game *game)
+{
+	game->mlx = mlx_init();
+	if (!game->mlx)
+	{
+		ft_putstr_fd("Error: mlx_init failed.\n", 2);
+		return (1);
+	}
+	game->win = NULL;
+	if (init_game_resources(game) != 0)
+		return (1);
+	init_player(&game->player);
+	init_ray(&game->ray);
+	init_game_textures(game);
 	game->floor_color = -1;
 	game->ceiling_color = -1;
 	return (0);

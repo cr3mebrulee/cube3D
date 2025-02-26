@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:26:57 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 13:01:19 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:38:01 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,23 +54,26 @@ char	*tidy_line(char *line)
 	return (line);
 }
 
-t_bool	is_map_line(const char *line)
+t_line_error	check_map_line_validity(const char *line)
 {
 	t_bool	has_valid_char;
 
-	if (!line || *line == '\0')
-		return (false);
 	has_valid_char = false;
+	if (!line || *line == '\0')
+		return (LINE_ERR_INVALID_LINE);
 	while (*line)
 	{
-		if (*line == '0' || *line == '1' || *line == 'N' || *line == 'S' 
+		if (*line == '0' || *line == '1' || *line == 'N' || *line == 'S'
 			|| *line == 'E' || *line == 'W')
 			has_valid_char = true;
 		else if (*line != ' ')
-			return (false);
+			return (LINE_ERR_INVALID_MAP_CHAR);
 		line++;
 	}
-	return (has_valid_char);
+	if (has_valid_char)
+		return (LINE_ERR_NONE);
+	else
+		return (LINE_ERR_INVALID_LINE);
 }
 
 t_bool	validate_pre_map_section(t_bool map_started)

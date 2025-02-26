@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_C_F_color.c                                    :+:      :+:    :+:   */
+/*   set_C_F_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:50:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 14:28:33 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 12:03:41 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,18 @@ static int	get_color_and_prefix(char *line, int *color, char *prefix)
 	free_tokens(tokens);
 	return (0);
 }
+
+// Handle the validation, extraction, and assignment of colors
+// for the floor and ceiling in the game. Colors are expected in the format:
+// "F R,G,B" or "C R,G,B", where R, G, and B are values between 0 and 255.
+//
+// - validate_color_numeric_tokens() ensures color values are numeric.
+// - split_and_validate_color_line() splits 
+//   the line and validates its structure.
+// - get_color_and_prefix() extracts the color values 
+//   and identifies the prefix (F or C).
+// - parse_color_line() processes the color line 
+//   and assigns it to the game struct.
 
 int	parse_color_line(char *line, t_game *game)
 {

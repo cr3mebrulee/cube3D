@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:48:02 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:15:48 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/17 13:54:08 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,51 +15,83 @@
 void	free_textures(t_game *game)
 {
 	if (game->no_texture.img)
-		mlx_destroy_image(game->mlx, game->no_texture.img);
+	{
+		if (game->no_texture.img->ptr)
+			mlx_destroy_image(game->mlx, game->no_texture.img->ptr);
+		free(game->no_texture.img);
+		game->no_texture.img = NULL;
+	}
 	if (game->so_texture.img)
-		mlx_destroy_image(game->mlx, game->so_texture.img);
+	{
+		if (game->so_texture.img->ptr)
+			mlx_destroy_image(game->mlx, game->so_texture.img->ptr);
+		free(game->so_texture.img);
+		game->so_texture.img = NULL;
+	}
 	if (game->we_texture.img)
-		mlx_destroy_image(game->mlx, game->we_texture.img);
+	{
+		if (game->we_texture.img->ptr)
+			mlx_destroy_image(game->mlx, game->we_texture.img->ptr);
+		free(game->we_texture.img);
+		game->we_texture.img = NULL;
+	}
 	if (game->ea_texture.img)
-		mlx_destroy_image(game->mlx, game->ea_texture.img);
-	game->no_texture.img = NULL;
-	game->so_texture.img = NULL;
-	game->we_texture.img = NULL;
-	game->ea_texture.img = NULL;
+	{
+		if (game->ea_texture.img->ptr)
+			mlx_destroy_image(game->mlx, game->ea_texture.img->ptr);
+		free(game->ea_texture.img);
+		game->ea_texture.img = NULL;
+	}
 }
 
 void	free_map(t_game *game)
 {
 	int	i;
 
-	if (!game || !game->map->grid)
+	if (!game || !game->map)
 		return ;
-	i = 0;
-	while (i < game->map->height)
+	if (game->map->grid)
 	{
-		if (game->map->grid[i])
+		i = 0;
+		while (i < game->map->height)
 		{
-			free(game->map->grid[i]);
-			game->map->grid[i] = NULL;
+			if (game->map->grid[i])
+			{
+				free(game->map->grid[i]);
+				game->map->grid[i] = NULL;
+			}
+			i++;
 		}
-		i++;
+		free(game->map->grid);
+		game->map->grid = NULL;
 	}
-	free(game->map->grid);
-	game->map->grid = NULL;
+	free(game->map);
+	game->map = NULL;
 }
+
 
 void	free_game(t_game *game)
 {
 	if (!game)
 		return ;
 	free_map(game);
-	// free_textures(game);
+	free_textures(game);
+	if (game->img)
+	{
+		if (game->img->ptr && game->mlx)
+			mlx_destroy_image(game->mlx, game->img->ptr);
+		free(game->img);
+		game->img = NULL;
+	}
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
 		free(game->mlx);
+		game->mlx = NULL;
 	}
 	free(game);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:18:58 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 14:19:20 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/21 12:05:07 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,21 @@ int	validate_numeric_tokens(char **tokens)
 	}
 	return (0);
 }
+
+// Converts RGB values into a single integer color value.
+// @tokens: Array containing the RGB values as strings.
+//
+// This function extracts the red (R), green (G), and blue (B) values from 
+// the tokens array, converts them to integers using ft_atoi(), and ensures 
+// they are within the valid range (0-255). It then combines them into a 
+// single integer using bitwise operations:
+//
+// - The red value is shifted 16 bits to the left (R << 16).
+// - The green value is shifted 8 bits to the left (G << 8).
+// - The blue value remains in the lowest 8 bits.
+//
+// The resulting integer is structured as: 0xRRGGBB
+// If any value is out of range, the function returns -1 to indicate an error.
 
 int	get_color_from_tokens(char **tokens)
 {
