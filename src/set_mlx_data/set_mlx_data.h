@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_tania.c                                       :+:      :+:    :+:   */
+/*   set_mlx_data.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/05 15:15:22 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/28 11:18:07 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/12 15:41:29 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/26 14:39:36 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/cub3d.h"
+# ifndef SET_MLX_DATA_H
+# define SET_MLX_DATA_H
 
-int	main(void)
-{
-	return (0);
-}
+# include "../../include/structs.h"
+# include "../../include/cub3d.h"
+# include "../../libft/libft.h"
+
+int		set_mlx_data(t_game *game);
+void	set_player(t_game *game);
+void	draw_player(t_game *game, int px, int py);
+
+# endif

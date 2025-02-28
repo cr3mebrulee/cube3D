@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 17:00:41 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/14 12:57:44 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:40:24 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	render_scene(t_game *game)
 	mlx_clear_window(game->mlx, game->win);
 	// Draw the maze (walls, floor, etc.)
 	//draw_maze(game);
-	// Draw the player
 	draw_player(game, (int)game->player.x, (int)game->player.y);
 	// Display the new frame
 	// mlx_put_image_to_window(game->mlx, game->win, game->image, 0, 0);
@@ -28,17 +27,14 @@ int	calculate_new_position(t_game *game, int keycode)
 {
 	if (keycode == W_KEY)
 	{
-		printf("W key pressed\n");
 		calculate_new_w_position(game);
 	}
 	if (keycode == S_KEY)
 	{
-		printf("S key pressed\n");
 		calculate_new_s_position(game);
 	}
 	if (keycode == A_KEY)
 	{
-		printf("A key pressed\n");
 		calculate_new_a_position(game);
 	}
 	if (keycode == D_KEY)

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_parser.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:33:28 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/26 16:53:24 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,24 @@
 int	main(int ac, char **av)
 {
 	char	*filename;
-	int		success;
 	t_game	*game;
 
-	if (ac == 2)
-	{
-		filename = av[1];
-		game = (t_game *)malloc(sizeof(t_game));
-		if (!game)
-		{
-			ft_putstr_fd("Error: Malloc fail.\n", 2);
-			return (1);
-		}
-		init_game(game);
-		success = parse_file(filename, game);
-		if (success == 0)
-			print_map(game);
-		else
-			ft_putstr_fd("Error: Parsing failed.\n", 2);
-		free_game(game);
-		return (success);
-	}
-	else
-	{
-		ft_putstr_fd("Error: ./cub3d takes in exactly one argument\n", 2);
+	game = (t_game *)malloc(sizeof(t_game));
+	if (!game)
 		return (1);
-	}
+	game->opts.debug_output_level = 0;
+	if (opts_fill(ac - 1, &av[1], game))
+		return (finalize(game, NULL, 2));
+	filename = av[1];
+	if (parse_file(filename, game))
+		return (finalize(game, "Parsing error", 3));
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		print_game(*game);
+	set_mlx_data(game);
+	draw_player(game, (int)game->player.x, (int)game->player.y);
+	mlx_hook(game->win, 2, 1L << 0, handle_key, game);
+	mlx_hook(game->win, 17, 0, handle_close, game);
+	mlx_loop(game->mlx);
+	return (finalize(game, NULL, 0));
+	return (0);
 }

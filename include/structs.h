@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/14 13:48:43 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/26 13:00:18 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef STRUCTS_H
 # define STRUCTS_H
+
+typedef unsigned long long	t_debug;
+
+typedef struct s_opts
+{
+	t_debug	debug_output_level;
+	int		retval;
+	int		error;
+}	t_opts;
 
 typedef struct s_map
 {
@@ -81,6 +90,7 @@ typedef struct s_game
 	t_texture	ea_texture;
 	int			floor_color;
 	int			ceiling_color;
+	t_opts		opts;
 }	t_game;
 
 #endif

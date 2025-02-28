@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialize_player.c                                      :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/07 15:12:06 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/14 11:57:54 by taretiuk         ###   ########.fr       */
+/*   Created: 2025/02/26 16:51:56 by taretiuk          #+#    #+#             */
+/*   Updated: 2025/02/26 16:52:51 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx_data_initialization.h"
+#include "set_mlx_data.h"
 
 void	draw_player(t_game *game, int px, int py)
 {
-	// Draw a white pixel at the player's position
 	mlx_pixel_put(game->mlx, game->win, px, py, PLAYER_COLOR);
-	printf("Player Position: x = %f, y = %f\n", game->player.x, game->player.y);
-}
-
-void	initialize_player(t_game *game)
-{
-	game->player.x = WIDTH / 2;
-	game->player.y = HEIGHT / 2;
-	game->player.dir_x = 1.0;
-	game->player.dir_y = 0.0;
-	game->player.plane_x = 0.0;
-	game->player.plane_y = 0.66;
-	game->player.move_speed = 3;
-	draw_player(game, (int)game->player.x, (int)game->player.y);
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("Player Position: x = %f, y = %f\n",
+			game->player.x, game->player.y);
+	return ;
 }
