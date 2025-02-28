@@ -28,8 +28,12 @@ PARSE_FILE_NAMES = parser.c parser_utils.c parser_utils_2.c init_structs.c init_
 PARSE_FILE_DIR = parse_file
 PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
 
-SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS)
-ENDPOINT_NAME = main_parser.c
+RAY_CASTING_NAME = ray_catsing.c
+RAY_CASTING_DIR = ray_catsing
+RAY_CASTING_SRCS =  $(addprefix $(RAY_CASTING_DIR)/, $(RAY_CASTING_SRCS))
+
+SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS) $(RAY_CASTING_SRCS)
+ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))
 ENDPOINT_SRC = $(addprefix $(SRC_DIR)/, $(ENDPOINT_NAME))
