@@ -7,10 +7,6 @@ SRC_DIR = src
 OBJ_DIR = build
 PREFIX = @
 
-ifeq ($(DEBUG), 1)
-	CFLAGS += -DDEBUG
-endif
-
 MLX = -lmlx -lX11 -lXext -lm
 
 LIBFT_DIR = libft
@@ -55,7 +51,10 @@ $(NAME): $(OBJ) $(ENDPOINT_OBJ) $(LIBFT)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(PREFIX)mkdir -p $(dir $@)
+	$(PREFIX)$(CC) -MM $(CFLAGS) $< -MF $(@:.o=.d) -MT $@
 	$(PREFIX)$(CC) $(CFLAGS) -c $< -o $@
+
+-include $(OBJ:.o=.d)
 
 $(OBJ_DIR):
 	$(PREFIX)mkdir -p $(OBJ_DIR) $(OBJ_DIR)/$(HANDLE_KEY_DIR) $(OBJ_DIR)/$(INIT_MLX_DATA_DIR)
@@ -68,13 +67,13 @@ clean:
 	$(PREFIX)cd $(LIBFT_DIR) && make clean
 
 fclean: clean
-	$(PREFIX)rm -f $(NAME)
+	$(PREFIX)rm -f $(NAME) $(NAME)_tania
 	$(PREFIX)cd $(LIBFT_DIR) && make fclean
 
 re: fclean all
 
-debug: DEBUG = 1
-debug: all
+debug:
+	$(MAKE) CFLAGS="$(CFLAGS) -DDEBUG" all
 
 .PHONY: all clean fclean re
 
@@ -88,7 +87,8 @@ TANIA_ENDPOINT_SRC = $(addprefix $(SRC_DIR)/, $(TANIA_ENDPOINT_NAME))
 TANIA_ENDPOINT_OBJ = $(TANIA_OBJ_DIR)/$(TANIA_ENDPOINT_NAME:.c=.o)
 
 # Include all necessary sources for Tania
-TANIA_SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) $(INIT_MLX_DATA_SRCS) $(INTERNAL_SETTINGS_SRCS)
+TANIA_SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) opts_fill.c $(SET_MLX_DATA_SRCS) $(INTERNAL_SETTINGS_SRCS)
+ENDPOINT_NAME = main.c
 TANIA_SRC = $(addprefix $(SRC_DIR)/, $(TANIA_SRC_NAMES))
 TANIA_OBJ = $(patsubst $(SRC_DIR)/%.c, $(TANIA_OBJ_DIR)/%.o, $(TANIA_SRC))
 
@@ -102,8 +102,11 @@ $(TANIA_OBJ_DIR):
 
 # Rule to compile source files into corresponding object files
 $(TANIA_OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(TANIA_OBJ_DIR)
-	$(PREFIX)mkdir -p $(dir $@)  # Ensure subdirectories exist
+	$(PREFIX)mkdir -p $(dir $@)
+	$(PREFIX)$(CC) -MM $(CFLAGS) $< -MF $(@:.o=.d) -MT $@
 	$(PREFIX)$(CC) $(CFLAGS) -c $< -o $@
+
+-include $(TANIA_OBJ:.o=.d)
 
 # Tania-specific build rule
 tania: pre $(TANIA_OBJ_DIR) $(TANIA_OBJ) $(TANIA_ENDPOINT_OBJ) $(LIBFT)

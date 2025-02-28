@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:02:32 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/26 15:01:04 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:15:42 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ int	opts_fill(int argc, char **argv, t_game *game)
 	if (argc == 2)
 	{
 		if (check_debug_level(argv[1]))
+		{
 			game->opts.debug_output_level = 2;
-		printf("Debug mode enabled\n");
+			printf("Debug mode enabled\n");
+		}
 	}
 	return (0);
 }
