@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:09:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 15:40:41 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/02/28 14:11:14 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,21 @@ void	draw_vertical_line(t_game *game, int x, int drawStart, int drawEnd, int col
 
 void	cast_all_rays(t_game *game)
 {
-	int	x;
-	
+	int		x;
+	double	camera_x;
+
 	x = 0;
+	// this while loop takes one pixel of the screen and makes calculations for each ray
 	while (x < WIDTH)
 	{
-		// Calculate the ray position and direction.
-		double cameraX = 2 * x / (double)WIDTH - 1;
-		game->ray.ray_dir_x = game->player.dir_x + game->player.plane_x * cameraX;
-		game->ray.ray_dir_y = game->player.dir_y + game->player.plane_y * cameraX;
+		// recalculate what ray will be calculated in context of -1 to 1
+		camera_x = 2 * x / (double)WIDTH - 1;
+		
+		//calculate ray vector
+		game->ray.ray_dir_x = game->player.dir_x + game->player.plane_x * camera_x;
+		game->ray.ray_dir_y = game->player.dir_y + game->player.plane_y * camera_x;
 
-		// Which box of the map we're in.
+		// Sets where in the map the way is being cased
 		game->ray.map_x = (int)game->player.x;
 		game->ray.map_y = (int)game->player.y;
 
@@ -104,7 +108,7 @@ void	cast_all_rays(t_game *game)
 				game->ray.hit = 1;
 			x++;
 		}
-
+		
 		// Calculate distance projected on camera direction (to avoid fisheye effect).
 		if (game->ray.side == 0)
 			game->ray.perp_wall_dist = (game->ray.map_x - game->player.x + (1 - game->ray.step_x) / 2.0) / game->ray.ray_dir_x;
@@ -115,7 +119,7 @@ void	cast_all_rays(t_game *game)
 		int lineHeight = (int)(HEIGHT / game->ray.perp_wall_dist);
 
 		// Calculate lowest and highest pixel to fill in current stripe.
-		int drawStart = -lineHeight / 2 + EIGHT / 2;
+		int drawStart = -lineHeight / 2 + HEIGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
 		int drawEnd = lineHeight / 2 + HEIGHT / 2;
