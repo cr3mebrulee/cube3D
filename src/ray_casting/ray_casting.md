@@ -106,3 +106,9 @@ Determining the Ray Length:
 ---
  **A longer ray means the wall is farther away, while a shorter ray indicates the wall is closer.**  This is why walls that are further away are rendered with shorter heights on the screen, creating the illusion of depth and perspective.
  ---
+
+---
+
+When a ray is cast from the player's position, its direction is computed by combining the player's direction vector (which indicates where the player is looking) with the camera plane (which defines the field of view). This gives each ray a unique direction, even though the player might be generally facing one way.
+
+---

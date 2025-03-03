@@ -28,15 +28,15 @@ PARSE_FILE_NAMES = parser.c parser_utils.c parser_utils_2.c init_structs.c init_
 PARSE_FILE_DIR = parse_file
 PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
 
-RAY_CASTING_NAME = ray_casting.c
-RAY_CASTING_DIR = ray_casting
-RAY_CASTING_SRCS =  $(addprefix $(RAY_CASTING_DIR)/, $(RAY_CASTING_SRCS))
-
 INTERNAL_SETTINGS_NAMES = finalize.c debug_mode_utils.c
 INTERNAL_SETTINGS_DIR = internal_settings
 INTERNAL_SETTINGS_SRCS =  $(addprefix $(INTERNAL_SETTINGS_DIR)/, $(INTERNAL_SETTINGS_NAMES))
 
-SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) opts_fill.c $(SET_MLX_DATA_SRCS) $(INTERNAL_SETTINGS_SRCS)
+RAY_CASTING_NAMES = ray_casting.c minimap.c setup_ray.c draw_line.c
+RAY_CASTING_DIR = ray_casting
+RAY_CASTING_SRCS =  $(addprefix $(RAY_CASTING_DIR)/, $(RAY_CASTING_NAMES))
+
+SRC_NAMES = $(PARSE_FILE_SRCS) $(DESTRUCTOR_SRCS) $(HANDLE_KEY_SRCS) opts_fill.c $(SET_MLX_DATA_SRCS) $(INTERNAL_SETTINGS_SRCS) $(RAY_CASTING_SRCS)
 ENDPOINT_NAME = main.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_NAMES))
