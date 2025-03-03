@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:21:31 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/14 13:18:29 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/02/28 11:40:08 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	calculate_new_d_position(t_game *game)
 	// 	game->player.x = new_x;
 	// if (is_walkable(game, game->player.x, new_y))
 	// 	game->player.y = new_y;
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("D: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
 }
 
@@ -56,6 +58,8 @@ int	calculate_new_a_position(t_game *game)
 	// 	game->player.x = new_x;
 	// if (is_walkable(game, game->player.x, new_y))
 	// 	game->player.y = new_y;
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("A: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
 }
 
@@ -73,6 +77,8 @@ int	calculate_new_s_position(t_game *game)
 	// 	game->player.x = new_x;
 	// if (is_walkable(game, game->player.x, new_y))
 	// 	game->player.y = new_y;
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("S: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
 }
 
@@ -90,6 +96,7 @@ int	calculate_new_w_position(t_game *game)
 	// 	game->player.y = new_y;
 	game->player.x = new_x;
 	game->player.y = new_y;
-	printf("Moved to: x = %f, y = %f\n", game->player.x, game->player.y);
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("W: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
 }
