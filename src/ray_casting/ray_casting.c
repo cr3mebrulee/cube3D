@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:09:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/03 14:33:54 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/04 12:11:08 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,12 @@ void	render_player_view(t_game *game, t_img *pov)
 	{
 		setup_ray(game, x);
 		perform_dda(game);
-		draw_wall_line(game, pov, x);
+		compute_wall_texture(game);
+		draw_textured_wall_line(game, pov, x);
 		x++;
 	}
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("Selected texture: %p, Width: %d, Height: %d\n", game->ray.texture, game->ray.texture->width, game->ray.texture->height);
 }
 
 // Composite the POV into the main window.
