@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:11:13 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/03 14:32:58 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/05 10:46:06 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ int	get_wall_color(t_game *game)
 }
 
 // Compute wall stripe parameters.
-void	get_stripe_params(t_game *game, t_line *stripe)
+void	get_line_params(t_game *game, t_line *line)
 {
-	stripe->wall_height = (int)(HEIGHT / game->ray.perp_wall_dist);
-	stripe->draw_start = -stripe->wall_height / 2 + HEIGHT / 2;
-	if (stripe->draw_start < 0)
-		stripe->draw_start = 0;
-	stripe->draw_end = stripe->wall_height / 2 + HEIGHT / 2;
-	if (stripe->draw_end >= HEIGHT)
-		stripe->draw_end = HEIGHT - 1;
-	stripe->color = get_wall_color(game);
+	line->wall_height = (int)(HEIGHT / game->ray.perp_wall_dist);
+	line->draw_start = -line->wall_height / 2 + HEIGHT / 2;
+	if (line->draw_start < 0)
+		line->draw_start = 0;
+	line->draw_end = line->wall_height / 2 + HEIGHT / 2;
+	if (line->draw_end >= HEIGHT)
+		line->draw_end = HEIGHT - 1;
+	line->color = get_wall_color(game);
 }
 
 void	draw_wall_line(t_game *game, t_img *pov, int x)
-{
+{	// cast_and_render_minimap(game);
 	double		perp_wall_dist;
 	t_line		line;
 	int			y;
@@ -66,7 +66,7 @@ void	draw_wall_line(t_game *game, t_img *pov, int x)
 
 	perp_wall_dist = calculate_wall_distance(game);
 	game->ray.perp_wall_dist = perp_wall_dist;
-	get_stripe_params(game, &line);
+	get_line_params(game, &line);
 	y = line.draw_start;
 	while (y <= line.draw_end)
 	{

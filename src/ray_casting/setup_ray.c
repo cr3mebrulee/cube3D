@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:59:53 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/03 14:00:39 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/05 10:40:09 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,3 @@ void	setup_ray(t_game *game, int x)
 	compute_delta_distances(game);
 	compute_step_and_side_distances(game, pos_x, pos_y);
 }
-

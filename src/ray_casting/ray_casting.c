@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:09:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/03 14:33:54 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/05 10:41:02 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,22 +76,19 @@ int	cast_and_render_player_view(t_game *game)
 	if (!pov)
 		return (1);
 	render_player_view(game, pov);
-	mlx_put_image_to_window(game->mlx, game->win,
-		pov->ptr, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->win, pov->ptr, 0, 0);
+	mlx_destroy_image(game->mlx, pov->ptr);
 	free(pov);
 	return (0);
 }
 
-// Final scene rendering: render the POV as the main game view.
+// Final scene rendering. render the POV as the main game view.
 int	cast_and_render_scene(t_game *game)
 {
 	int	success;
 
+	success = 0;
 	success = cast_and_render_player_view(game);
-	if (success)
-		return (1);
 	// cast_and_render_minimap(game);
-	return (0);
+	return (success);
 }
-
-

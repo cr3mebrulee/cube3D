@@ -1,6 +1,120 @@
 # Ray Casting Algorithm
 
-## Understanding Vectors
+- [Ray Casting Algorithm](#ray-casting-algorithm)
+  - [1. Initialization of the POV Image](#1-initialization-of-the-pov-image)
+  - [2. Ray Setup](#2-ray-setup)
+  - [3. Digital differential analysis (DDA) loop](#3-digital-differential-analysis-dda-loop)
+  - [4. Wall rendering and texture mapping](#4-wall-rendering-and-texture-mapping)
+  - [5. Composition](#5-composition)
+- [_CS concepts used_](#cs-concepts-used)
+  - [Understanding vectors](#understanding-vectors)
+  - [`camera_x`](#camera_x)
+  - [Ray direction vector \& camera plane](#ray-direction-vector--camera-plane)
+  - [`Delta distance`](#delta-distance)
+  - [`Digital Differential Analysis (DDA) loop`](#digital-differential-analysis-dda-loop)
+  - [Wall height calculations](#wall-height-calculations)
+
+
+**_Flow of rendering:_**
+
+1. **POV image creation.** An off-screen image is created to render the player's point-of-view.  
+2. **Ray setup.** For each vertical column on the screen, a ray is configured using the player's position, direction, and camera plane.
+3. **DDA loop.** The Digital Differential Analysis (DDA) algorithm is used to determine where each ray first intersects a wall.
+4. **Wall rendering.** Based on the distance to the wall, the appropriate wall slice is calculated and drawn.
+5. **Composition.** The rendered POV image is then displayed in the window.  
+
+```c
+// 1. An off-screen image (POV image) is created.
+pov = create_pov_img(game);
+
+// 2. A while loop is used to process each vertical column.
+int x = 0;
+while (x < WIDTH)
+{
+    // a. The ray for column 'x' is set up.
+    setup_ray(game, x);
+    
+    // b. The DDA loop is executed until a wall is hit.
+    perform_dda(game);
+    
+    // c. The wall stripe for column 'x' is drawn.
+    draw_wall_stripe(game, pov, x);
+    
+    // d. The column counter is incremented.
+    x++;
+}
+
+// 3. The POV image is then composited onto the main window.
+mlx_put_image_to_window(game->mlx, game->win, pov->ptr, 0, 0);
+```
+
+## 1. Initialization of the POV Image
+An off-screen image is created to hold the player's point-of-view (POV). This image is later composited to the window.
+
+_Steps:_
+
+- A new image is allocated and initialized by MLX functions.
+- The dimensions of the image are set to match the window size (WIDTH × HEIGHT).
+- The image is used to render the player's point of view (POV) before being displayed.
+
+## 2. Ray Setup
+
+For each vertical column on the screen, a ray is configured using the player's position, direction, and camera plane.
+
+*_Steps:_
+
+- **Compute `camera_x`**  
+    > camera_x = frac({2 \ times x}{SCREEN_WIDTH} - 1)
+  
+  This value, ranging from -1 (left edge) to 1 (right edge), indicates the relative horizontal position of the column.
+
+- **Determine ray direction:**  
+  The ray direction is calculated by combining the player's direction with an offset from the camera plane.  
+  > ray_dir = player.dir + (player.plane \ times camera_x)
+  
+- **Set starting map cell:**  
+  The player's position is used to determine the initial grid cell in which the ray starts.
+
+- **Compute Delta Distances and Initial Side Distances:**  
+  Delta distances represent the distance the ray must travel to cross the next grid boundary. Initial side distances are computed based on the player's position and the ray direction.
+
+---
+
+## 3. Digital differential analysis (DDA) loop
+
+The DDA algorithm is used to step through the map grid until a wall is encountered.
+
+_Steps:_
+
+- The ray is advanced from cell to cell by comparing the next x-side distance with the next y-side distance.
+- The grid cell is updated based on which distance is smaller.
+- The loop continues until a cell containing a wall is reached.
+- The side of the wall hit (vertical or horizontal) is recorded.
+
+---
+
+## 4. Wall rendering and texture mapping
+
+After the wall is hit, the wall slice is computed and drawn on the POV image.
+
+**_WORK IN PROGRESS_**
+
+---
+
+## 5. Composition
+
+After the POV image is rendered, it is composited onto the main window.
+
+_Steps:_
+
+- The POV image, containing the full 3D view, is placed to the window using a function such as `mlx_put_image_to_window`.
+- Any necessary resource cleanup is done.
+
+---
+
+# _CS concepts used_
+
+## Understanding vectors
 
 A **vector** is simply a pair of values—one for the x-direction and one for the y-direction — that together indicate a direction and often a magnitude (how much one moves in that direction).
 
@@ -33,7 +147,7 @@ It tells how far left or right each vertical column is relative to the center of
 
 ---
 
-### Ray Direction Vector & Camera Plane
+## Ray direction vector & camera plane
 
 The **ray direction vector** determines the direction in which a ray is cast from the player's position. It combines:
 - The **player's forward direction** (where the player is facing).
@@ -104,11 +218,14 @@ Determining the Ray Length:
 - Optionally, this distance can be adjusted (using cosine correction) to remove any distortion from the angled rays (the fish-eye effect).
 
 ---
- **A longer ray means the wall is farther away, while a shorter ray indicates the wall is closer.**  This is why walls that are further away are rendered with shorter heights on the screen, creating the illusion of depth and perspective.
- ---
+## Wall height calculations
 
----
+When rendering the 3D view, the height of each wall slice on the screen is determined by the distance from the player to the wall. In simple terms, if a wall is closer to the player, it appears taller (and thus wider on the screen), while a wall that is farther away appears shorter. This change in wall height creates the illusion of depth and perspective.
 
-When a ray is cast from the player's position, its direction is computed by combining the player's direction vector (which indicates where the player is looking) with the camera plane (which defines the field of view). This gives each ray a unique direction, even though the player might be generally facing one way.
+**How It Works:**
+
+- The wall height is calculated by dividing the screen height by the perpendicular distance from the player to the wall. This means that a shorter distance (indicating a nearby wall) produces a larger wall height, and a longer distance (indicating a farther wall) produces a smaller wall height.
+- The resulting wall height is then used to determine where to start and end drawing the wall on the screen. The drawing is centered vertically so that the wall slice appears in the middle of the screen.
+- In essence, walls that are close to the player are rendered with greater height, while walls that are far away are rendered with lesser height, which is how the perspective is achieved.
 
 ---
