@@ -12,7 +12,7 @@ MLX = -lmlx -lX11 -lXext -lm
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-HANDLE_KEY_NAMES = handle_key.c calculate_new_positions.c
+HANDLE_KEY_NAMES = handle_key.c calculate_new_positions.c rot_key.c
 HANDLE_KEY_DIR = handle_key
 HANDLE_KEY_SRCS =  $(addprefix $(HANDLE_KEY_DIR)/, $(HANDLE_KEY_NAMES))
 
@@ -32,7 +32,7 @@ INTERNAL_SETTINGS_NAMES = finalize.c debug_mode_utils.c
 INTERNAL_SETTINGS_DIR = internal_settings
 INTERNAL_SETTINGS_SRCS =  $(addprefix $(INTERNAL_SETTINGS_DIR)/, $(INTERNAL_SETTINGS_NAMES))
 
-RAY_CASTING_NAMES = ray_casting.c minimap.c setup_ray.c draw_line.c
+RAY_CASTING_NAMES = ray_casting.c minimap.c setup_ray.c
 RAY_CASTING_DIR = ray_casting
 RAY_CASTING_SRCS =  $(addprefix $(RAY_CASTING_DIR)/, $(RAY_CASTING_NAMES))
 
