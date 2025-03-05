@@ -44,16 +44,16 @@ int	get_wall_color(t_game *game)
 }
 
 // Compute wall stripe parameters.
-void	get_stripe_params(t_game *game, t_line *stripe)
+void	get_line_params(t_game *game, t_line *line)
 {
-	stripe->wall_height = (int)(HEIGHT / game->ray.perp_wall_dist);
-	stripe->draw_start = -stripe->wall_height / 2 + HEIGHT / 2;
-	if (stripe->draw_start < 0)
-		stripe->draw_start = 0;
-	stripe->draw_end = stripe->wall_height / 2 + HEIGHT / 2;
-	if (stripe->draw_end >= HEIGHT)
-		stripe->draw_end = HEIGHT - 1;
-	stripe->color = get_wall_color(game);
+	line->wall_height = (int)(HEIGHT / game->ray.perp_wall_dist);
+	line->draw_start = -line->wall_height / 2 + HEIGHT / 2;
+	if (line->draw_start < 0)
+		line->draw_start = 0;
+	line->draw_end = line->wall_height / 2 + HEIGHT / 2;
+	if (line->draw_end >= HEIGHT)
+		line->draw_end = HEIGHT - 1;
+	line->color = get_wall_color(game);
 }
 
 void	draw_wall_line(t_game *game, t_img *pov, int x)
