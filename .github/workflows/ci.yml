@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - master
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up C environment
+        run: sudo apt-get update && sudo apt-get install -y build-essential libbsd-dev python3 valgrind libreadline-dev && python3 -m pip install --upgrade pip setuptools && python3 -m pip install norminette
+
+      - name: Install MiniLibX
+        run: |
+          git clone https://github.com/42Paris/minilibx-linux.git
+          cd minilibx-linux
+          make
+          sudo cp libmlx.a /usr/local/lib/
+          sudo cp mlx.h /usr/local/include/
+          sudo apt-get install -y libxext-dev libxrandr-dev libx11-dev libbsd-dev libssl-dev libxrender-dev
+
+      - name: Build and test the project
+        run: make
