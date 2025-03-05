@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:29:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 14:35:48 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/05 12:55:34 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_player(t_player *player)
 	player->plane_x = 0;
 	player->plane_y = 0;
 	player->move_speed = PLAYER_SPEED;
+	player->rot_speed = ROT_SPEED;
 }
 
 void	init_ray(t_ray *ray)
