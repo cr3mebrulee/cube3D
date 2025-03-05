@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/05 13:20:29 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/05 15:47:13 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # include "../src/set_mlx_data/set_mlx_data.h"
 # include "../src/internal_settings/internal_settings.h"
 # include "../src/ray_casting/ray_casting.h"
+# include "../src/texture_mapping/texture_mapping.h"
 
 int	opts_fill(int argc, char **argv, t_game *game);
 
