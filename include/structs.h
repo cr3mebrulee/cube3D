@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 13:00:18 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/04 11:18:47 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,24 +40,6 @@ typedef struct s_player
 	double	move_speed;
 }	t_player;
 
-typedef struct s_ray
-{
-	double	camera_x;
-	double	ray_dir_x;
-	double	ray_dir_y;
-	int		map_x;
-	int		map_y;
-	double	side_dist_x;
-	double	side_dist_y;
-	double	delta_dist_x;
-	double	delta_dist_y;
-	double	perp_wall_dist;
-	int		step_x;
-	int		step_y;
-	int		hit;
-	int		side;
-}	t_ray;
-
 typedef struct		s_img
 {
 	void	*ptr;
@@ -73,7 +55,31 @@ typedef struct s_texture
 	int			*data;
 	int			width;
 	int			height;
+	char		*addr;
+	int			bpp;
+	int			size_line;
+	int			endian;
 }	t_texture;
+
+typedef struct s_ray
+{
+	double		camera_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	int			map_x;
+	int			map_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		perp_wall_dist;
+	int			step_x;
+	int			step_y;
+	int			hit;
+	int			side;
+	int			tex_x;
+	t_texture	*texture;
+}	t_ray;
 
 typedef struct s_game
 {

@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:53:46 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/02/26 13:35:38 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/04 13:20:59 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,24 @@ void	print_texture(t_texture texture, const char *name)
 	printf("  Width: %d, Height: %d\n", texture.width, texture.height);
 }
 
+void	print_ray(t_ray *ray)
+{
+	if (!ray)
+		return ;
+	printf("Ray:\n");
+	printf("  camera_x: %.2f\n", ray->camera_x);
+	printf("  ray_dir_x: %.2f, ray_dir_y: %.2f\n",
+		ray->ray_dir_x, ray->ray_dir_y);
+	printf("  map_x: %d, map_y: %d\n", ray->map_x, ray->map_y);
+	printf("  side_dist_x: %.2f, side_dist_y: %.2f\n",
+		ray->side_dist_x, ray->side_dist_y);
+	printf("  delta_dist_x: %.2f, delta_dist_y: %.2f\n",
+		ray->delta_dist_x, ray->delta_dist_y);
+	printf("  perp_wall_dist: %.2f\n", ray->perp_wall_dist);
+	printf("  step_x: %d, step_y: %d\n", ray->step_x, ray->step_y);
+	printf("  hit: %d, side: %d\n", ray->hit, ray->side);
+}
+
 void	print_game(t_game game)
 {
 	printf("##### GAME STRUCTS ###\n");
@@ -87,6 +105,7 @@ void	print_game(t_game game)
 	if (game.map)
 		print_map(*game.map);
 	print_player(game.player);
+	print_ray(&game.ray);
 	printf("Data pointer: %p\n", (void *)game.data);
 	print_texture(game.no_texture, "NO");
 	print_texture(game.so_texture, "SO");
