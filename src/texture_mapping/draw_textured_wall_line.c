@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:12:57 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/04 13:48:37 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/05 15:26:11 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 
 int	get_pixel_color(t_texture *tex, int x, int y)
 {
-	char	*pixel;
+	int	*pixel;
 	int		color;
 
-	pixel = tex->addr + (y * tex->size_line + x * (tex->bpp / 8));
+	pixel = (int *)(tex->img->addr + (y * tex->img->size_line + x * (tex->img->bpp / 8)));
+	#ifdef DEBUG
+	printf("Texture size line 2: %d\n", tex->img->size_line);
+	#endif
 	color = *(int *)pixel;
 	return (color);
 }
@@ -40,16 +43,10 @@ void	calculate_wall_bounds(t_game *game, int *draw_start,
 
 	wall_height = (int)(HEIGHT / game->ray.perp_wall_dist);
 	#ifdef DEBUG
-		printf("perp_wall_dist: %.5f\n", game->ray.perp_wall_dist);
-		printf("wall_height: %d\n", wall_height);
-		printf("draw_start: %d, draw_end: %d\n", *draw_start, *draw_end);
+	printf("perp_wall_dist: %.5f\n", game->ray.perp_wall_dist);
+	printf("wall_height: %d\n", wall_height);
+	printf("draw_start: %d, draw_end: %d\n", *draw_start, *draw_end);
 	#endif
-	if (wall_height <= 0) {
-		wall_height = 1;  // Avoid zero or negative heights
-	}
-	if (wall_height > HEIGHT) {
-		wall_height = HEIGHT;  // Limit it to screen height
-	}
 	*draw_start = -wall_height / 2 + HEIGHT / 2;
 	if (*draw_start < 0)
 		*draw_start = 0;
@@ -57,7 +54,10 @@ void	calculate_wall_bounds(t_game *game, int *draw_start,
 	if (*draw_end >= HEIGHT)
 		*draw_end = HEIGHT - 1;
 	*tex_step = (double)game->ray.texture->height / wall_height;
+	printf("Wall Height: %d, Distance: %f\n", wall_height, game->ray.perp_wall_dist);
+	#ifdef DEBUG
 	printf("tex_step: %.5f, tex_pos: %.5f\n", *tex_step, *tex_pos);
+	#endif
 	*tex_pos = (*draw_start - HEIGHT / 2 + wall_height / 2) * (*tex_step);
 }
 
@@ -76,6 +76,7 @@ double	calculate_wall_distance(t_game *game)
 
 void	draw_textured_wall_line(t_game *game, t_img *pov, int x)
 {
+	double	perp_wall_dist;
 	int		y;
 	int		draw_start;
 	int		draw_end;
@@ -84,15 +85,17 @@ void	draw_textured_wall_line(t_game *game, t_img *pov, int x)
 	int		tex_y;
 	int		color;
 
-	game->ray.perp_wall_dist = calculate_wall_distance(game);
+	perp_wall_dist = calculate_wall_distance(game);
+	game->ray.perp_wall_dist = perp_wall_dist;
 	calculate_wall_bounds(game, &draw_start, &draw_end, &tex_step, &tex_pos);
+	#ifdef DEBUG
+	printf("Ray wall distance is %f\n", game->ray.perp_wall_dist);
 	printf("draw start: %d, draw end: %d\n", draw_start, draw_end);
+	#endif
 	y = draw_start;
 	while (y < draw_end)
 	{
-		printf("tex_pos: %.5f\n", tex_pos);
 		tex_y = (int)tex_pos & (game->ray.texture->height - 1);
-		printf("tex_pos: %.5f\n", tex_pos);
 		tex_pos += tex_step;
 		color = get_pixel_color(game->ray.texture, game->ray.tex_x, tex_y);
 		put_pixel(pov, x, y, color);
