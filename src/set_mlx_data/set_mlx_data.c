@@ -12,14 +12,54 @@
 
 #include "set_mlx_data.h"
 
+t_img	*create_image(void *mlx, int width, int height)
+{
+	t_img	*img;
+
+	img = malloc(sizeof(t_img));
+	if (!img)
+	{
+		ft_putstr_fd("Error: Malloc fail in create_image\n", 2);
+		return (NULL);
+	}
+	img->ptr = mlx_new_image(mlx, width, height);
+	if (!img->ptr)
+	{
+		free(img);
+		ft_putstr_fd("Error: mlx_new_image failed in create_image\n", 2);
+		return (NULL);
+	}
+	img->addr = mlx_get_data_addr(img->ptr, &img->bpp,
+			&img->size_line, &img->endian);
+	return (img);
+}
+
 int	set_mlx_data(t_game *game)
 {
-	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "MLX Test");
+	game->win = mlx_new_window(game->mlx, WIDTH,
+			HEIGHT, "cub3D by taretiuk & dbisko");
 	if (!game->win)
 		return (1);
-	game->img->ptr = mlx_new_image(game->mlx, WIDTH, HEIGHT);
-	game->img->addr = mlx_get_data_addr(game->img->ptr, &game->img->bpp,
-			&game->img->size_line, &game->img->endian);
+	game->img = create_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->img)
+		return (1);
 	mlx_put_image_to_window(game->mlx, game->win, game->img->ptr, 0, 0);
+	game->pov = create_image(game->mlx, WIDTH, HEIGHT);
+	if (!game->pov)
+		return (1);
 	return (0);
 }
+
+
+
+// int	set_mlx_data(t_game *game)
+// {
+// 	game->win = mlx_new_window(game->mlx, WIDTH, HEIGHT, "MLX Test");
+// 	if (!game->win)
+// 		return (1);
+// 	game->img->ptr = mlx_new_image(game->mlx, WIDTH, HEIGHT);
+// 	game->img->addr = mlx_get_data_addr(game->img->ptr, &game->img->bpp,
+// 			&game->img->size_line, &game->img->endian);
+// 	mlx_put_image_to_window(game->mlx, game->win, game->img->ptr, 0, 0);
+// 	return (0);
+// }

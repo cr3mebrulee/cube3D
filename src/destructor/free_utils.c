@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 11:48:02 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 13:54:08 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/07 10:40:26 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,16 @@ void	free_map(t_game *game)
 	game->map = NULL;
 }
 
+void	free_image(void *mlx, t_img **img)
+{
+	if (img && *img)
+	{
+		if ((*img)->ptr && mlx)
+			mlx_destroy_image(mlx, (*img)->ptr);
+		free(*img);
+		*img = NULL;
+	}
+}
 
 void	free_game(t_game *game)
 {
@@ -76,15 +86,18 @@ void	free_game(t_game *game)
 		return ;
 	free_map(game);
 	free_textures(game);
-	if (game->img)
+	free_image(game->mlx, &game->img);
+	free_image(game->mlx, &game->pov);
+	if (game->data)
 	{
-		if (game->img->ptr && game->mlx)
-			mlx_destroy_image(game->mlx, game->img->ptr);
-		free(game->img);
-		game->img = NULL;
+		free(game->data);
+		game->data = NULL;
 	}
 	if (game->win)
+	{
 		mlx_destroy_window(game->mlx, game->win);
+		game->win = NULL;
+	}
 	if (game->mlx)
 	{
 		mlx_destroy_display(game->mlx);
@@ -93,5 +106,7 @@ void	free_game(t_game *game)
 	}
 	free(game);
 }
+
+
 
 

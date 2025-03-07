@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 15:43:44 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/05 15:45:08 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/05 16:13:26 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,6 @@ typedef struct s_texture
 	int			*data;
 	int			width;
 	int			height;
-	char		*addr;
-	int			bpp;
-	int			size_line;
-	int			endian;
 }	t_texture;
 
 typedef struct s_ray
@@ -87,6 +83,7 @@ typedef struct s_game
 	void		*mlx;
 	void		*win;
 	t_img		*img;
+	t_img		*pov;
 	t_map		*map;
 	t_player	player;
 	char		*data; // to get image data
