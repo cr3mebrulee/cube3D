@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:05:32 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/03 14:20:20 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/07 15:27:14 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # include "../../include/cub3d.h"
 # include "ray_casting_internal.h"
+
+# define MINIMAP_WIDTH 200
+# define MINIMAP_HEIGHT 200
+# define MINIMAP_POS_X  10
+# define MINIMAP_POS_Y 10
+# define CELL_SIZE 5
 
 typedef struct s_line
 {

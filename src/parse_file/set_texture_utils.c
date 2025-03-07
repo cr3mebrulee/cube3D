@@ -6,12 +6,11 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 16:16:56 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/05 15:10:23 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/07 14:30:42 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-// #define DEBUG
 
 // parse_* - Loads and initializes a texture from a file.
 // @file_path: Path to the texture file.
@@ -42,9 +41,6 @@ int	parse_north(char *file_path, t_game *game)
 			&game->no_texture.img->bpp, &game->no_texture.img->size_line,
 			&game->no_texture.img->endian);
 	game->no_texture.data = (int *)game->no_texture.img->addr;
-	#ifdef DEBUG
-	printf("Texture size line: %d\n", game->no_texture.img->size_line);
-	#endif
 	return (0);
 }
 
@@ -67,9 +63,6 @@ int	parse_south(char *file_path, t_game *game)
 			&game->so_texture.img->bpp, &game->so_texture.img->size_line,
 			&game->so_texture.img->endian);
 	game->so_texture.data = (int *)game->so_texture.img->addr;
-	#ifdef DEBUG
-	printf("Texture size line: %d\n", game->so_texture.img->size_line);
-	#endif
 	return (0);
 }
 
@@ -92,9 +85,6 @@ int	parse_west(char *file_path, t_game *game)
 			&game->we_texture.img->bpp, &game->we_texture.img->size_line,
 			&game->we_texture.img->endian);
 	game->we_texture.data = (int *)game->we_texture.img->addr;
-	#ifdef DEBUG
-	printf("Texture size line: %d\n", game->we_texture.img->size_line);
-	#endif
 	return (0);
 }
 
@@ -117,9 +107,6 @@ int	parse_east(char *file_path, t_game *game)
 			&game->ea_texture.img->bpp, &game->ea_texture.img->size_line,
 			&game->ea_texture.img->endian);
 	game->ea_texture.data = (int *)game->ea_texture.img->addr;
-	#ifdef DEBUG
-	printf("Texture size line: %d\n", game->ea_texture.img->size_line);
-	#endif
 	return (0);
 }
 
