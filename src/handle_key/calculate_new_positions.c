@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:21:31 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/07 10:01:28 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:54:37 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ int	calculate_new_d_position(t_game *game)
 
 	new_x = game->player.x - game->player.dir_y * game->player.move_speed;
 	new_y = game->player.y + game->player.dir_x * game->player.move_speed;
-	if (is_walkable(game, new_x, game->player.y))
+	if (is_walkable(game, new_x, game->player.y)
+		&& is_walkable(game, game->player.x, new_y)
+		&& is_walkable(game, new_x, new_y))
+	{
 		game->player.x = new_x;
-	if (is_walkable(game, game->player.x, new_y))
 		game->player.y = new_y;
+	}
 	if (game->opts.debug_output_level & DBG_PRINT_MAP)
 		printf("D: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
@@ -50,10 +53,13 @@ int	calculate_new_a_position(t_game *game)
 
 	new_x = game->player.x + game->player.dir_y * game->player.move_speed;
 	new_y = game->player.y - game->player.dir_x * game->player.move_speed;
-	if (is_walkable(game, new_x, game->player.y))
+	if (is_walkable(game, new_x, game->player.y) 
+		&& is_walkable(game, game->player.x, new_y)
+		&& is_walkable(game, new_x, new_y))
+	{
 		game->player.x = new_x;
-	if (is_walkable(game, game->player.x, new_y))
 		game->player.y = new_y;
+	}
 	if (game->opts.debug_output_level & DBG_PRINT_MAP)
 		printf("A: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
@@ -66,10 +72,13 @@ int	calculate_new_s_position(t_game *game)
 
 	new_x = game->player.x - game->player.dir_x * game->player.move_speed;
 	new_y = game->player.y - game->player.dir_y * game->player.move_speed;
-	if (is_walkable(game, new_x, game->player.y))
+	if (is_walkable(game, new_x, game->player.y)
+		&& is_walkable(game, game->player.x, new_y)
+		&& is_walkable(game, new_x, new_y))
+	{
 		game->player.x = new_x;
-	if (is_walkable(game, game->player.x, new_y))
 		game->player.y = new_y;
+	}
 	if (game->opts.debug_output_level & DBG_PRINT_MAP)
 		printf("S: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
@@ -82,11 +91,15 @@ int	calculate_new_w_position(t_game *game)
 
 	new_x = game->player.x + game->player.dir_x * game->player.move_speed;
 	new_y = game->player.y + game->player.dir_y * game->player.move_speed;
-	if (is_walkable(game, new_x, game->player.y))
+	if (is_walkable(game, new_x, game->player.y)
+		&& is_walkable(game, game->player.x, new_y)
+		&& is_walkable(game, new_x, new_y))
+	{
 		game->player.x = new_x;
-	if (is_walkable(game, game->player.x, new_y))
 		game->player.y = new_y;
+	}
 	if (game->opts.debug_output_level & DBG_PRINT_MAP)
 		printf("W: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
 }
+
