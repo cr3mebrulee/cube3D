@@ -6,7 +6,7 @@
 /*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/07 10:50:51 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:12:05 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,10 @@ int	main(int ac, char **av)
 		return (finalize(game, "Parsing error.\n", 3));
 	if (game->opts.debug_output_level & DBG_PRINT_MAP)
 		print_game(*game);
-	set_mlx_data(game);
+	if (set_mlx_data(game))
+		return (finalize(game, "MLX setup error.\n", 4));
 	if (cast_and_render_scene(game))
-		return (finalize(game, "Render error.\n", 4));
+		return (finalize(game, "Render error.\n", 5));
 	mlx_hook(game->win, 2, 1L << 0, handle_key, game);
 	mlx_hook(game->win, 17, 0, handle_close, game);
 	mlx_loop(game->mlx);
