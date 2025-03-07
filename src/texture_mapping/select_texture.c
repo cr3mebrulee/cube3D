@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:24:36 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/05 14:18:57 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/07 16:06:31 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	select_texture(t_game *game)
 			game->ray.texture = &game->no_texture;
 	}
 }
-
 
 void	compute_wall_texture(t_game *game)
 {

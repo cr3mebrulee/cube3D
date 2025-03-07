@@ -28,15 +28,15 @@ PARSE_FILE_NAMES = parser.c parser_utils.c parser_utils_2.c init_structs.c init_
 PARSE_FILE_DIR = parse_file
 PARSE_FILE_SRCS =  $(addprefix $(PARSE_FILE_DIR)/, $(PARSE_FILE_NAMES))
 
-INTERNAL_SETTINGS_NAMES = finalize.c debug_mode_utils.c
+INTERNAL_SETTINGS_NAMES = finalize.c debug_mode_utils.c debug_mode_utils_2.c
 INTERNAL_SETTINGS_DIR = internal_settings
 INTERNAL_SETTINGS_SRCS =  $(addprefix $(INTERNAL_SETTINGS_DIR)/, $(INTERNAL_SETTINGS_NAMES))
 
-RAY_CASTING_NAMES = ray_casting.c minimap.c setup_ray.c
+RAY_CASTING_NAMES = ray_casting.c setup_ray.c
 RAY_CASTING_DIR = ray_casting
 RAY_CASTING_SRCS =  $(addprefix $(RAY_CASTING_DIR)/, $(RAY_CASTING_NAMES))
 
-TEXTURE_MAPPING_NAMES = select_texture.c draw_textured_wall_line.c
+TEXTURE_MAPPING_NAMES = select_texture.c draw_textured_wall_line.c calculate_wall_distance_and_properties.c process_texture_drawing.c
 TEXTURE_MAPPING_DIR = texture_mapping
 TEXTURE_MAPPING_SRCS =  $(addprefix $(TEXTURE_MAPPING_DIR)/, $(TEXTURE_MAPPING_NAMES))
 

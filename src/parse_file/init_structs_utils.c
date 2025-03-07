@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:29:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/05 12:55:34 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/07 14:34:22 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	init_texture(t_texture *texture)
 	texture->width = 0;
 	texture->height = 0;
 }
-
