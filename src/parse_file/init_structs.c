@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 10:52:27 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/26 14:37:26 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:08:49 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,12 @@ static int	init_mlx_resources(t_game *game)
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (1);
-	game->img = ft_calloc(1, sizeof(t_img));
-	if (!game->img)
-	{
-		ft_putstr_fd("Error: Memory allocation for game image failed.\n", 2);
-		return (1);
-	}
 	game->map = ft_calloc(1, sizeof(t_map));
 	if (!game->map)
 	{
 		ft_putstr_fd("Error: Memory allocation for game map failed.\n", 2);
+		free(game->img);
+		game->img = NULL;
 		return (1);
 	}
 	return (0);

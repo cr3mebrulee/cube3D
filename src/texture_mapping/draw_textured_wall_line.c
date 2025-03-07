@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_textured_wall_line.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 11:12:57 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/05 15:26:11 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/07 10:33:20 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	calculate_wall_bounds(t_game *game, int *draw_start,
 	if (*draw_end >= HEIGHT)
 		*draw_end = HEIGHT - 1;
 	*tex_step = (double)game->ray.texture->height / wall_height;
-	printf("Wall Height: %d, Distance: %f\n", wall_height, game->ray.perp_wall_dist);
 	#ifdef DEBUG
+	printf("Wall Height: %d, Distance: %f\n", wall_height, game->ray.perp_wall_dist);
 	printf("tex_step: %.5f, tex_pos: %.5f\n", *tex_step, *tex_pos);
 	#endif
 	*tex_pos = (*draw_start - HEIGHT / 2 + wall_height / 2) * (*tex_step);
