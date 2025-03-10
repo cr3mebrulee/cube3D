@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 11:49:07 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/07 15:20:47 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/10 16:39:52 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ int	main(int ac, char **av)
 	set_mlx_data(game);
 	if (game->opts.debug_output_level & DBG_PRINT_MAP)
 		print_game(game);
+	if (set_mlx_data(game))
+		return (finalize(game, "MLX setup error.\n", 4));
 	if (cast_and_render_scene(game))
-		return (finalize(game, "Render error.\n", 4));
+		return (finalize(game, "Render error.\n", 5));
 	mlx_hook(game->win, 2, 1L << 0, handle_key, game);
 	mlx_hook(game->win, 17, 0, handle_close, game);
 	mlx_loop(game->mlx);
