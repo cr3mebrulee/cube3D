@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 17:21:31 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/11 12:04:57 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:14:49 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,3 @@ int	calculate_new_w_position(t_game *game)
 		printf("W: moved to: x = %f, y = %f\n", game->player.x, game->player.y);
 	return (0);
 }
-
-
