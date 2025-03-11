@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setup_ray.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 12:59:53 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/05 10:40:09 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/11 12:29:52 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,31 +43,31 @@ void	compute_delta_distances(t_game *game)
 }
 
 // Compute step and initial side distances.
-void	compute_step_and_side_distances(t_game *game, 
+void	compute_step_and_side_distances(t_game *game,
 	double pos_x, double pos_y)
 {
 	if (game->ray.ray_dir_x < 0)
 	{
 		game->ray.step_x = -1;
-		game->ray.side_dist_x = (pos_x - game->ray.map_x) 
+		game->ray.side_dist_x = (pos_x - game->ray.map_x)
 			* game->ray.delta_dist_x;
 	}
 	else
 	{
 		game->ray.step_x = 1;
-		game->ray.side_dist_x = (game->ray.map_x + 1.0 - pos_x) 
+		game->ray.side_dist_x = (game->ray.map_x + 1.0 - pos_x)
 			* game->ray.delta_dist_x;
 	}
 	if (game->ray.ray_dir_y < 0)
 	{
 		game->ray.step_y = -1;
-		game->ray.side_dist_y = (pos_y - game->ray.map_y) 
+		game->ray.side_dist_y = (pos_y - game->ray.map_y)
 			* game->ray.delta_dist_y;
 	}
 	else
 	{
 		game->ray.step_y = 1;
-		game->ray.side_dist_y = (game->ray.map_y + 1.0 - pos_y) 
+		game->ray.side_dist_y = (game->ray.map_y + 1.0 - pos_y)
 			* game->ray.delta_dist_y;
 	}
 }

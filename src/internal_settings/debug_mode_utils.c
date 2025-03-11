@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:53:46 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/07 15:19:14 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/11 12:26:21 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	print_player(t_player *player)
 	printf("Player:\n");
 	printf("  x: %.2f, y: %.2f\n", player->x, player->y);
 	printf("  dir_x: %.2f, dir_y: %.2f\n", player->dir_x, player->dir_y);
-	printf("  plane_x: %.2f, plane_y: %.2f\n", player->plane_x, player->plane_y);
+	printf("  plane_x: %.2f, plane_y: %.2f\n",
+		player->plane_x, player->plane_y);
 	printf("  move_speed: %.2f\n", player->move_speed);
 }
 
