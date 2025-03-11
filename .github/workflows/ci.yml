@@ -33,7 +33,7 @@ jobs:
 
       - name: Run Norminette
         run: |
-          norminette | tee norminette_output.log
+          norminette ./include ./libft ./src | tee norminette_output.log
           if grep -q "Error" norminette_output.log; then
             echo "Norminette check failed!"
             exit 1
