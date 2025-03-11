@@ -1,7 +1,7 @@
-NO ./textures/marbfac_n.xpm
-SO ./textures/marbfac_s.xpm
-WE ./textures/marbfac_w.xpm
-EA ./textures/marbfac_e.xpm
+NO ./textures/marbfac/marbfac_n.xpm
+SO ./textures/marbfac/marbfac_s.xpm
+WE ./textures/marbfac/marbfac_w.xpm
+EA ./textures/marbfac/marbfac_e.xpm
 
 F 220 100 0
 C 225 30 0

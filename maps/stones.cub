@@ -1,0 +1,15 @@
+NO ./textures/stones/bluestone.xpm
+SO ./textures/stones/greystone.xpm
+WE ./textures/stones/wall_1.xpm
+EA ./textures/stones/redbrick.xpm
+
+F 220 100 0
+C 225 30 0
+
+1111111111
+1000000001
+1000001001
+10000S0001
+1000000001
+1000000010
+1111111111

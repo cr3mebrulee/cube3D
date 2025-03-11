@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:24:54 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/10 16:22:15 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:22:36 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	get_pixel_color(t_texture *tex, int x, int y)
 	pixel = (tex->img->addr
 			+ (y * tex->img->size_line + x * (tex->img->bpp / 8)));
 	color = *(int *)pixel;
-	//printf("get_pixel_color: text_x:=%d, tex_y:=%d, color:=%d \n", x, y, color);
 	return (color);
 }
 
@@ -42,7 +41,6 @@ void	process_texture_drawing(t_game *game, t_img *pov, int x, t_wall *wall)
 	while (y < wall->draw_end)
 	{
 		tex_y = (int)wall->tex_pos & (game->ray.texture->height - 1);
-		// printf("process_texture_drawing: tex_y:=%d, tex_pos:=%f\n", tex_y, wall->tex_pos);
 		wall->tex_pos += wall->tex_step;
 		color = get_pixel_color(game->ray.texture, game->ray.tex_x, tex_y);
 		put_pixel(pov, x, y, color);
