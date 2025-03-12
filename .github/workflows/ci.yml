@@ -31,5 +31,13 @@ jobs:
           sudo cp libmlx.a /usr/local/lib/
           sudo cp mlx.h /usr/local/include/
 
+      - name: Run Norminette
+        run: |
+          norminette ./include ./libft ./src | tee norminette_output.log
+          if grep -q "Error" norminette_output.log; then
+            echo "Norminette check failed!"
+            exit 1
+          fi
+
       - name: Build and test the project
         run: make

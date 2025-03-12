@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_C_F_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:50:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/21 12:03:41 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/11 12:29:33 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,11 @@ static int	get_color_and_prefix(char *line, int *color, char *prefix)
 // "F R,G,B" or "C R,G,B", where R, G, and B are values between 0 and 255.
 //
 // - validate_color_numeric_tokens() ensures color values are numeric.
-// - split_and_validate_color_line() splits 
+// - split_and_validate_color_line() splits
 //   the line and validates its structure.
-// - get_color_and_prefix() extracts the color values 
+// - get_color_and_prefix() extracts the color values
 //   and identifies the prefix (F or C).
-// - parse_color_line() processes the color line 
+// - parse_color_line() processes the color line
 //   and assigns it to the game struct.
 
 int	parse_color_line(char *line, t_game *game)
@@ -96,7 +96,7 @@ int	parse_color_line(char *line, t_game *game)
 		game->ceiling_color = color;
 	else
 	{
-		ft_putstr_fd("Error: Invalid color line prefix (expected F or C).\n", 2);
+		ft_putstr_fd("Error: Color line prefix expected F or C\n", 2);
 		return (1);
 	}
 	return (0);

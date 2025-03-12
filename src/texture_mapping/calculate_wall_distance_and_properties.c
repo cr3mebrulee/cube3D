@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:26:05 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/07 16:26:15 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/11 11:25:06 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,14 @@ void	calculate_wall_properties(t_game *game, t_wall *wall)
 	wall->draw_end = wall->height / 2 + HEIGHT / 2;
 	if (wall->draw_end >= HEIGHT)
 		wall->draw_end = HEIGHT - 1;
-	wall->tex_step = (double)game->ray.texture->height / wall->height;
-	wall->tex_pos = (wall->draw_start - HEIGHT
-			/ 2 + wall->height / 2) * wall->tex_step;
+	wall->tex_step = (double)game->ray.texture->height / (double)wall->height;
+	wall->tex_pos = ((double)wall->draw_start - (double)HEIGHT / 2
+			+ (double)wall->height / 2) * wall->tex_step;
+	if (game->opts.debug_output_level)
+	{
+		printf("calculate_wall_properties: tex_step=%f, tex_pos=%f\n",
+			wall->tex_step, wall->tex_pos);
+	}
 }
 
 double	calculate_wall_distance(t_game *game)

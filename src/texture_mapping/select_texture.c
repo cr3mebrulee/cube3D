@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 14:24:36 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/07 16:06:31 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/10 12:33:35 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@ int	get_texture_x(t_game *game, t_texture *tex)
 	if ((game->ray.side == 0 && game->ray.ray_dir_x > 0)
 		|| (game->ray.side == 1 && game->ray.ray_dir_y < 0))
 		tex_x = tex->width - tex_x - 1;
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("Wall_X: %f, Tex_X: %d, Texture Width: %d\n",
+			wall_x, tex_x, tex->width);
 	return (tex_x);
 }
 
@@ -57,4 +60,6 @@ void	compute_wall_texture(t_game *game)
 {
 	select_texture(game);
 	game->ray.tex_x = get_texture_x(game, game->ray.texture);
+	if (game->opts.debug_output_level & DBG_PRINT_MAP)
+		printf("Tex_X: %d\n", game->ray.tex_x);
 }

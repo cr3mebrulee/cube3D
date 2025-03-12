@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_utils_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 14:21:50 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/12 15:31:18 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/11 12:33:33 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	assign_color_prefix(char **tokens, t_game *game, int color)
 	}
 	else
 	{
-		ft_putstr_fd("Error: Invalid color line prefix (expected F or C).\n", 2);
+		ft_putstr_fd("Error: Color line prefix expected F or C\n", 2);
 		return (1);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:24:54 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/07 16:31:43 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/11 10:22:36 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	get_pixel_color(t_texture *tex, int x, int y)
 {
-	int	*pixel;
-	int	color;
+	char	*pixel;
+	int		color;
 
-	pixel = (int *)(tex->img->addr
+	pixel = (tex->img->addr
 			+ (y * tex->img->size_line + x * (tex->img->bpp / 8)));
 	color = *(int *)pixel;
 	return (color);

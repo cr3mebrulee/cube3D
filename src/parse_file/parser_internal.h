@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_internal.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:38:05 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/21 11:40:26 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/11 12:27:09 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void			find_and_set_player(t_game *game);
 // pad map
 int				normalize_map_width(t_game *game);
 
-// put C F color 
+// put C F color
 int				parse_color_line(char *line, t_game *game);
 
 // color utils
@@ -133,7 +133,7 @@ int				check_color_token_count(char **tokens);
 int				parse_texture(char *line, t_game *game);
 
 // set texture utils
-int				extract_texture_info(const char *line, 
+int				extract_texture_info(const char *line,
 					char **id, char **filepath);
 int				parse_north(char *file_path, t_game *game);
 int				parse_south(char *file_path, t_game *game);
@@ -141,13 +141,13 @@ int				parse_west(char *file_path, t_game *game);
 int				parse_east(char *file_path, t_game *game);
 
 // texture utils
-int				parse_no_texture_line(char *identifier, 
+int				parse_no_texture_line(char *identifier,
 					char *file_path, t_game *game);
-int				parse_so_texture_line(char *identifier, 
+int				parse_so_texture_line(char *identifier,
 					char *file_path, t_game *game);
-int				parse_we_texture_line(char *identifier, 
+int				parse_we_texture_line(char *identifier,
 					char *file_path, t_game *game);
-int				parse_ea_texture_line(char *identifier, 
+int				parse_ea_texture_line(char *identifier,
 					char *file_path, t_game *game);
 
 #endif
