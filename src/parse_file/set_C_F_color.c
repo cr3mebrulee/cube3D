@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_C_F_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:50:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/21 12:03:41 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:09:34 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static char	**split_and_validate_color_line(char *line)
 	tokens = ft_split(line, ' ');
 	if (tokens == NULL)
 	{
-		ft_putstr_fd("Error: Failed to split color line.\n", 2);
+		ft_putstr_fd("Error\nFailed to split color line.\n", 2);
 		return (NULL);
 	}
 	if (!check_color_token_count(tokens))
@@ -43,7 +43,7 @@ static char	**split_and_validate_color_line(char *line)
 	}
 	if (!validate_color_numeric_tokens(tokens))
 	{
-		ft_putstr_fd("Error: Invalid numeric value in color line.\n", 2);
+		ft_putstr_fd("Error\nInvalid numeric value in color line.\n", 2);
 		free_tokens(tokens);
 		return (NULL);
 	}
@@ -61,7 +61,7 @@ static int	get_color_and_prefix(char *line, int *color, char *prefix)
 	local_color = get_color_from_tokens(tokens);
 	if (local_color < 0)
 	{
-		ft_putstr_fd("Error: Color values must be between 0 and 255.\n", 2);
+		ft_putstr_fd("Error\nColor values must be between 0 and 255.\n", 2);
 		free_tokens(tokens);
 		return (1);
 	}
@@ -76,11 +76,11 @@ static int	get_color_and_prefix(char *line, int *color, char *prefix)
 // "F R,G,B" or "C R,G,B", where R, G, and B are values between 0 and 255.
 //
 // - validate_color_numeric_tokens() ensures color values are numeric.
-// - split_and_validate_color_line() splits 
+// - split_and_validate_color_line() splits
 //   the line and validates its structure.
-// - get_color_and_prefix() extracts the color values 
+// - get_color_and_prefix() extracts the color values
 //   and identifies the prefix (F or C).
-// - parse_color_line() processes the color line 
+// - parse_color_line() processes the color line
 //   and assigns it to the game struct.
 
 int	parse_color_line(char *line, t_game *game)
@@ -96,7 +96,7 @@ int	parse_color_line(char *line, t_game *game)
 		game->ceiling_color = color;
 	else
 	{
-		ft_putstr_fd("Error: Invalid color line prefix (expected F or C).\n", 2);
+		ft_putstr_fd("Error\nColor line prefix expected F or C\n", 2);
 		return (1);
 	}
 	return (0);

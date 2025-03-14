@@ -1,0 +1,15 @@
+NO ./textures/torch.xpm
+SO ./textures/planks.xpm
+WE ./textures/wood.xpm
+EA ./textures/grass.xpm
+
+F 220 100 0
+C 225 30 0
+
+1111111111
+1000000001
+1000001001
+10000S1001
+1000000001
+1000000010
+1111111111

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+         #
+#    By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/13 15:13:25 by dbisko            #+#    #+#              #
-#    Updated: 2025/02/10 15:28:52 by dbisko           ###   ########.fr        #
+#    Updated: 2025/03/14 11:15:27 by taretiuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ FILES = ft_atoi.c\
 		get_next_line.c
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 CFILES = $(FILES)
 OFILES = $(FILES:.c=.o)
 NAME = libft.a

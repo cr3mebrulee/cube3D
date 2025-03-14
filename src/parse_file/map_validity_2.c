@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validity_2.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:11:29 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/21 12:18:07 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:07:44 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	free_bool_array(t_bool **array, int rows)
 
 // Recursively explores the map to check if it's enclosed by walls.
 //
-// - If the current position is **out of bounds**, 
+// - If the current position is **out of bounds**,
 //   return false (map is invalid).
 // - If the cell is a wall ('1') or has already been visited, return true.
-// - Otherwise, mark the cell as visited 
+// - Otherwise, mark the cell as visited
 //   and recursively explore left, right, up, and down.
-// - If all four directions return true, 
+// - If all four directions return true,
 //   the map is enclosed; otherwise, it's invalid.
-t_bool	flood_fill_validate(char **map, t_point size, 
+t_bool	flood_fill_validate(char **map, t_point size,
 	t_point current, t_bool **visited)
 {
 	t_bool	left;
@@ -88,7 +88,7 @@ static t_bool	**allocate_visited(t_point size)
 	visited = malloc(size.y * sizeof(t_bool *));
 	if (!visited)
 	{
-		ft_putstr_fd("Error: Malloc fail in map validation\n", 2);
+		ft_putstr_fd("Error\nMalloc fail in map validation\n", 2);
 		return (NULL);
 	}
 	i = 0;
@@ -106,14 +106,14 @@ static t_bool	**allocate_visited(t_point size)
 }
 
 // Checks if the map is enclosed using flood fill.
-// 
+//
 // 1. Initializes a 2D boolean array to track visited positions.
 // 2. Starts flood fill from the player's position.
 // 3. Frees the visited array and determines whether the map is valid.
-// 
+//
 // If the map is not enclosed, an error is printed.
-// 
-// Returns 0 if the map is valid, 
+//
+// Returns 0 if the map is valid,
 // 1 if it's not enclosed or if memory allocation fails.
 int	validate_map_with_visited(t_game *game)
 {
@@ -123,8 +123,8 @@ int	validate_map_with_visited(t_game *game)
 	t_bool	**visited;
 	t_bool	valid;
 
-	map = game->map; 
-	size.x = map->width; 
+	map = game->map;
+	size.x = map->width;
 	size.y = map->height;
 	start.x = (int)game->player.x;
 	start.y = (int)game->player.y;
@@ -135,6 +135,6 @@ int	validate_map_with_visited(t_game *game)
 	free_bool_array(visited, size.y);
 	if (valid)
 		return (0);
-	ft_putstr_fd("Error: Map is not valid.\n", 2);
+	ft_putstr_fd("Error\nMap is not valid.\n", 2);
 	return (1);
 }

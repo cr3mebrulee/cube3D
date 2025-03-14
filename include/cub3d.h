@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 15:11:51 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/07 14:42:39 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/10 16:38:41 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define PLAYER_COLOR 0xFFFFFF
-# define PLAYER_SPEED 0.15
-# define ROT_SPEED 0.1
+# define PLAYER_SPEED 0.2
+# define ROT_SPEED 0.05
 # define ESC 65307
 # define W_KEY 119
 # define A_KEY 97
@@ -26,8 +26,7 @@
 # define LEFT_ARROW 65361
 # define RIGHT_ARROW 65363
 
-# define USAGE_MESSAGE "cub3d usage:\n map\n" \
-		 "--debug for debugging level (optional)\n"
+# define USAGE_MESSAGE "Usage: <program> <map> <--debug> (optional)\n"
 
 # define DBG_PRINT_MAP 2
 

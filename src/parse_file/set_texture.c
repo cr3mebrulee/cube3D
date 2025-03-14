@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 10:33:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/04 12:07:56 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/14 13:10:40 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ int	parse_by_identifier(char *identifier, char *file_path, t_game *game)
 // Extracts the texture identifier and file path from
 // the line. It then calls `parse_by_identifier()` to process the texture.
 // If extraction fails, an error message is printed.
-//
 // Returns 0 on success, 1 on failure.
 int	parse_texture(char *line, t_game *game)
 {
@@ -44,7 +43,7 @@ int	parse_texture(char *line, t_game *game)
 
 	if (extract_texture_info(line, &identifier, &file_path) != 0)
 	{
-		ft_putstr_fd("Error: Failed to extract texture.\n", 2);
+		ft_putstr_fd("Error\nFailed to extract texture.\n", 2);
 		return (1);
 	}
 	ret = parse_by_identifier(identifier, file_path, game);

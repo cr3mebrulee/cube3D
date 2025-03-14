@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_casting.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:09:40 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/07 10:32:40 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/07 16:05:35 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,11 @@ void	render_player_view(t_game *game, t_img *pov)
 		setup_ray(game, x);
 		perform_dda(game);
 		compute_wall_texture(game);
-		#ifdef DEBUG
-		printf("Wall_texture: %p\n", game->ray.texture);
-		#endif
 		draw_textured_wall_line(game, pov, x);
 		x++;
 	}
 	if (game->opts.debug_output_level & DBG_PRINT_MAP)
-		printf("Selected texture: %p, Width: %d, Height: %d\n", 
+		printf("Selected texture: %p, Width: %d, Height: %d\n",
 			game->ray.texture, game->ray.texture->width,
 			game->ray.texture->height);
 }
@@ -101,6 +98,5 @@ int	cast_and_render_scene(t_game *game)
 
 	success = 0;
 	success = cast_and_render_player_view(game);
-	// cast_and_render_minimap(game);
 	return (success);
 }

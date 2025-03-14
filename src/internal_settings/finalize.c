@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finalize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 12:42:52 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/07 14:09:06 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:02:34 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int	finalize(t_game *game, char *message, int retval)
 		free_game(game);
 	}
 	if (message)
-		printf("%s\n", message);
+		printf("%s", message);
 	return (retval);
 }

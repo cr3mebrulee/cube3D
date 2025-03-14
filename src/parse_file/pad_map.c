@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pad_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 13:25:52 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/21 12:08:21 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:08:05 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	pad_map_row(char **row, int target_width)
 	padded_row = malloc(target_width + 1);
 	if (!padded_row)
 	{
-		ft_putstr_fd("Error: Memory allocation failed.\n", 2);
+		ft_putstr_fd("Error\nMemory allocation failed.\n", 2);
 		return (1);
 	}
 	ft_memcpy(padded_row, *row, len);
