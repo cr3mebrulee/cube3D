@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_texture_drawing.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 16:24:54 by taretiuk          #+#    #+#             */
-/*   Updated: 2025/03/11 10:22:36 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/14 11:17:05 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	process_texture_drawing(t_game *game, t_img *pov, int x, t_wall *wall)
 	y = wall->draw_start;
 	while (y < wall->draw_end)
 	{
-		tex_y = (int)wall->tex_pos & (game->ray.texture->height - 1);
+		tex_y = (int)wall->tex_pos % (game->ray.texture->height - 1);
 		wall->tex_pos += wall->tex_step;
 		color = get_pixel_color(game->ray.texture, game->ray.tex_x, tex_y);
 		put_pixel(pov, x, y, color);

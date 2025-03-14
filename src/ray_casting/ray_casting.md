@@ -95,9 +95,18 @@ _Steps:_
 
 ## 4. Wall rendering and texture mapping
 
-After the wall is hit, the wall slice is computed and drawn on the POV image.
+After determining where a wall is hit, the engine computes the dimensions of the wall slice and maps the appropriate texture onto it. This process involves several mathematical steps:
 
-**_WORK IN PROGRESS_**
+1. Wall slice dimensions.  
+The wall slice's height is inversely proportional to the perpendicular distance from the player to the wall. A shorter distance results in a taller wall slice, creating the perspective effect where closer walls appear larger and distant walls smaller.
+
+2. Texture mapping parameters.
+   - **The texture step** is calculated by dividing the texture’s height by the wall slice height. This step size represents how much to increment the texture coordinate for each pixel drawn vertically on the screen.
+
+   - The **starting texture position is computed** based on the offset from the top of the wall slice. This ensures that the texture aligns properly with the corresponding section of the wall.
+3. Texture coordinate wrapping.  
+As the engine maps the texture onto the wall slice, it increments the texture coordinate by the texture step. To ensure that the coordinate stays within the bounds of the texture, the modulo operator is used.
+   - The **modulo operator** returns the remainder after division by the texture’s height, effectively wrapping the coordinate back to the start once it exceeds the texture dimensions. This is crucial when the texture’s height is not a power of 2, as simpler bitwise methods only work correctly for power-of-two dimensions.
 
 ---
 
