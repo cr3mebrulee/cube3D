@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_internal.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
+/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 11:38:05 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/11 12:27:09 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/14 10:43:31 by dbisko           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,8 @@ int				parse_we_texture_line(char *identifier,
 					char *file_path, t_game *game);
 int				parse_ea_texture_line(char *identifier,
 					char *file_path, t_game *game);
+
+// validate assets
+int				check_game_assets(t_game *game);
 
 #endif

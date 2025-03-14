@@ -84,6 +84,12 @@ This structure contains:
 - A 2D array representing the map
 - Player’s starting position and direction
 
+### Step 5: Checks if all assets are parsed
+
+Only maps with all assets can be rendered, so the struct is checked for:
+- Both the floor and ceiling colors were found and parsed.
+- All four of the wall textures were found and parsed.
+
 ## 3. Expected Behavior
 ✅ On Success:  
 - The .cub file is correctly parsed.  
@@ -101,7 +107,7 @@ To ensure the parser runs without memory leaks
 Valgrind example:
 
 ```sh
-valgrind --leak-check=full --show-leak-kinds=all ./cub3d valid_basic.cub
+valgrind --leak-check=full --show-leak-kinds=all ./cub3d maps/valid_basic.cub
 ```
 
 Automated Testing with a Loop  
@@ -150,5 +156,9 @@ invalid_nonexisting_texture_dir.cub → A texture file that doesn’t exist.
 invalid_texture_format.cub → An invalid texture format.
 
 invalid_unknown_chars.cub → Unknown characters in the map.
+
+invalid_missing_texture → missing east texture
+
+invalid_missing_f_color.cub → missing floor color.
 ```
 
