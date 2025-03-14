@@ -59,7 +59,7 @@ $(NAME): $(OBJ) $(ENDPOINT_OBJ) $(LIBFT)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+	$(CC) $(CFLAGS) -MMD -c $< -o $@
 
 -include $(OBJ:.o=.d)
 
