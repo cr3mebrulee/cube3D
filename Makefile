@@ -58,9 +58,8 @@ $(NAME): $(OBJ) $(ENDPOINT_OBJ) $(LIBFT)
 	$(PREFIX)$(CC) $(CFLAGS) $(OBJ)  $(ENDPOINT_OBJ) $(LIBFT) $(MLX) $(RLFLAGS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	$(PREFIX)mkdir -p $(dir $@)
-	$(PREFIX)$(CC) -MM $(CFLAGS) $< -MF $(@:.o=.d) -MT $@
-	$(PREFIX)$(CC) $(CFLAGS) -c $< -o $@
+	@mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
 
 -include $(OBJ:.o=.d)
 
