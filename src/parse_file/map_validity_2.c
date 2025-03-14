@@ -6,7 +6,7 @@
 /*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 11:11:29 by dbisko            #+#    #+#             */
-/*   Updated: 2025/03/11 12:28:08 by taretiuk         ###   ########.fr       */
+/*   Updated: 2025/03/14 13:07:44 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static t_bool	**allocate_visited(t_point size)
 	visited = malloc(size.y * sizeof(t_bool *));
 	if (!visited)
 	{
-		ft_putstr_fd("Error: Malloc fail in map validation\n", 2);
+		ft_putstr_fd("Error\nMalloc fail in map validation\n", 2);
 		return (NULL);
 	}
 	i = 0;
@@ -135,6 +135,6 @@ int	validate_map_with_visited(t_game *game)
 	free_bool_array(visited, size.y);
 	if (valid)
 		return (0);
-	ft_putstr_fd("Error: Map is not valid.\n", 2);
+	ft_putstr_fd("Error\nMap is not valid.\n", 2);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_validity.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 15:20:28 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/21 12:10:26 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:07:59 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	validate_single_player(t_game *game)
 	if (player_count == 1)
 		return (0);
 	if (player_count == 0)
-		ft_putstr_fd("Error: No player found in the map.\n", 2);
+		ft_putstr_fd("Error\nNo player found in the map.\n", 2);
 	else if (player_count > 1)
-		ft_putstr_fd("Error: Multiple players found in the map.\n", 2);
+		ft_putstr_fd("Error\nMultiple players found in the map.\n", 2);
 	return (1);
 }

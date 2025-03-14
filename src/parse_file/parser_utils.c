@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 14:26:57 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/17 13:38:01 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:08:58 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ int	open_file(char *filename)
 
 	if (!is_valid_cub_file(filename))
 	{
-		ft_putstr_fd("Error: Invalid file type. Use a .cub file.\n", 2);
+		ft_putstr_fd("Error\nInvalid file type. Use a .cub file.\n", 2);
 		return (-1);
 	}
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_putstr_fd("Error: Opening file", 2);
+		ft_putstr_fd("Error\nOpening file", 2);
 		return (-1);
 	}
 	return (fd);
@@ -80,7 +80,7 @@ t_bool	validate_pre_map_section(t_bool map_started)
 {
 	if (map_started)
 	{
-		ft_putstr_fd("Error: Invalid order. The map must "
+		ft_putstr_fd("Error\nnvalid order. The map must "
 			"be at the end of the file.\n", 2);
 		return (false);
 	}

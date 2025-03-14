@@ -19,14 +19,14 @@ t_img	*create_image(void *mlx, int width, int height)
 	img = malloc(sizeof(t_img));
 	if (!img)
 	{
-		ft_putstr_fd("Error: Malloc fail in create_image\n", 2);
+		ft_putstr_fd("Error\nMalloc fail in create_image\n", 2);
 		return (NULL);
 	}
 	img->ptr = mlx_new_image(mlx, width, height);
 	if (!img->ptr)
 	{
 		free(img);
-		ft_putstr_fd("Error: mlx_new_image failed in create_image\n", 2);
+		ft_putstr_fd("Error\nmlx_new_image failed in create_image\n", 2);
 		return (NULL);
 	}
 	img->addr = mlx_get_data_addr(img->ptr, &img->bpp,

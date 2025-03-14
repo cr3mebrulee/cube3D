@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dbisko <dbisko@student.42.fr>              +#+  +:+       +#+        */
+/*   By: taretiuk <taretiuk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/10 14:02:39 by dbisko            #+#    #+#             */
-/*   Updated: 2025/02/21 11:45:21 by dbisko           ###   ########.fr       */
+/*   Updated: 2025/03/14 13:08:21 by taretiuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	append_line_to_map(t_game *game, char *line)
 	dup_line = ft_strdup(line);
 	if (!dup_line)
 	{
-		ft_putstr_fd("Error: Memory allocation failed for map row.\n", 2);
+		ft_putstr_fd("Error\nMemory allocation failed for map row.\n", 2);
 		return (1);
 	}
 	game->map->grid[game->map->height] = dup_line;
@@ -47,7 +47,7 @@ int	parse_map(char *line, t_game *game)
 			sizeof(char *) * (game->map->height + 2));
 	if (!new_grid)
 	{
-		ft_putstr_fd("Error: Memory allocation failed for map grid.\n", 2);
+		ft_putstr_fd("Error\nMemory allocation failed for map grid.\n", 2);
 		return (1);
 	}
 	game->map->grid = new_grid;
